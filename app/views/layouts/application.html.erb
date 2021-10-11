@@ -1,3 +1,4 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,8 +10,11 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <%= yield %>
+    <%= render partial: "shared/navbar" %>  
+      <div class = "container">
+        <%= yield %>  
+      </div>
   </body>
+
 </html>
