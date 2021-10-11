@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_09_214010) do
+ActiveRecord::Schema.define(version: 2021_10_09_213746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,17 +22,6 @@ ActiveRecord::Schema.define(version: 2021_10_09_214010) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "event_schedules", force: :cascade do |t|
-    t.bigint "time_block_id", null: false
-    t.bigint "room_id", null: false
-    t.bigint "event_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["event_id"], name: "index_event_schedules_on_event_id"
-    t.index ["room_id"], name: "index_event_schedules_on_room_id"
-    t.index ["time_block_id"], name: "index_event_schedules_on_time_block_id"
-  end
-
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -40,49 +29,4 @@ ActiveRecord::Schema.define(version: 2021_10_09_214010) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "organizers", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.bigint "department_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["department_id"], name: "index_organizers_on_department_id"
-  end
-
-  create_table "participants", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "rooms", force: :cascade do |t|
-    t.string "name"
-    t.string "location"
-    t.integer "capacity"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "student_schedules", force: :cascade do |t|
-    t.bigint "event_id", null: false
-    t.bigint "participant_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["event_id"], name: "index_student_schedules_on_event_id"
-    t.index ["participant_id"], name: "index_student_schedules_on_participant_id"
-  end
-
-  create_table "time_blocks", force: :cascade do |t|
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  add_foreign_key "event_schedules", "events"
-  add_foreign_key "event_schedules", "rooms"
-  add_foreign_key "event_schedules", "time_blocks"
-  add_foreign_key "organizers", "departments"
-  add_foreign_key "student_schedules", "events"
-  add_foreign_key "student_schedules", "participants"
 end
