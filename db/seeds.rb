@@ -7,18 +7,59 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'json'
 require 'icalendar'
+require 'csv'
 
 department_data = JSON.parse(File.read('data/subject.json'))
 department_field = ["id", "name"]
 department_data.each do |department|
   department['id']['-'] = ''
-  Department.import department_field, [department]
+  department['name'] += " Department"
+  Organizer.import department_field, [department]
 end
+
+Organizer.create(name: "None")
+
+rooms = []
+CSV.foreach("data/room.csv", headers: true) do |row|
+  rooms << Room.new(row.to_h)
+end
+Room.import rooms
 
 event_data = Icalendar::Calendar.parse(File.open("data/brandeis-university.ics"))
 events = event_data.first.events
-event_field = ["name", "description"]
+event_field = ["name", "description", "organizer_id"]
 events.each do |event|
-  event_info = { "name" => event.summary.to_s, "description" => event.description.to_s }
+  event_info = { "name" => event.summary.to_s, "description" => event.description.to_s, "organizer_id" => 1}
+  custom_property_list = event.to_ical.split("\r\nX-TRUMBA-CUSTOMFIELD")[1..]
+  custom_property_list[-1] = custom_property_list[-1].split("\r\nX-TRUMBA-LINK")[0];
+  custom_property_list.each do |custom_property|
+    # if custom_property.include? "NAME=Room"
+    #   room_name = custom_property.split("TYPE=SingleLine:")[-1]
+    #   room_location = event.location.to_s
+    #   if !Room.where("rooms.location LIKE ?", "%#{room_location}%").size().zero?
+    #     if !Room.where(location: room_location).where("rooms.name LIKE ?", "%#{room_name}%").size().zero?
+    #       room_id = Room.where(location: room_location).where("rooms.name LIKE ?", "%#{room_name}%")[0].id
+    #     else
+    #       room = Room.create(location: room_location, name: room_name)
+    #       room_id = room.id
+    #     end
+    #   else
+    #     Room.create(location: room_location, name:room_name)
+    #   end
+    # els
+    if custom_property.include? "NAME=Event sponsor(s)"
+      organizer = custom_property.split("TYPE=MultiLine:")[-1]
+      if organizer.include? "\r\n "
+        organizer["\r\n "]=""
+      end
+      
+      if Organizer.exists?(name: organizer)
+        organizer = Organizer.find_by(name: organizer)
+      else
+        organizer = Organizer.create(name: organizer)
+      end
+      event_info["organizer_id"] = organizer.id 
+    end
+  end
   Event.import event_field, [event_info]
 end

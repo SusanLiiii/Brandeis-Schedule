@@ -13,6 +13,9 @@ gem 'webpacker',  '5.4.0'
 gem 'json', '2.5.1'
 gem 'activerecord-import'
 gem 'icalendar', '2.7.1'
+gem 'watir', '~> 6.19', '>= 6.19.1'
+gem 'webdrivers', '~> 4.6'
+gem 'nokogiri', '~> 1.11', '>= 1.11.7'
 
 group :development, :test do
   gem 'byebug',  '11.1.3', platforms: %i[mri mingw x64_mingw]
@@ -35,7 +38,6 @@ group :test do
   gem 'rails-controller-testing', '1.0.5'
   gem 'rexml', '3.2.5'
   gem 'selenium-webdriver',       '3.142.7'
-  gem 'webdrivers',               '4.6.0'
 end
 
 group :production do

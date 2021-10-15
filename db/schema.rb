@@ -10,23 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_09_213746) do
+ActiveRecord::Schema.define(version: 2021_10_14_300000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "departments", force: :cascade do |t|
+  create_table "events", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.bigint "organizer_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_events_on_name"
+    t.index ["organizer_id"], name: "index_events_on_organizer_id"
+  end
+
+  create_table "organizers", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_organizers_on_name"
   end
 
-  create_table "events", force: :cascade do |t|
+  create_table "participants", force: :cascade do |t|
     t.string "name"
-    t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "rooms", force: :cascade do |t|
+    t.string "name"
+    t.string "location"
+    t.string "capacity"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["location"], name: "index_rooms_on_location"
+    t.index ["name"], name: "index_rooms_on_name"
+  end
+
+  add_foreign_key "events", "organizers"
 end

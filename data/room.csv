@@ -1,0 +1,38 @@
+location,name,capacity
+Shapiro Campus Center,"Atrium, 1st Floor",150
+Shapiro Campus Center,"Shapiro Theater, 1st Floor",249
+Shapiro Campus Center,"Multipurpose Room, Room 236",80
+Shapiro Campus Center,"Function Room 1, Room 315",16
+Shapiro Campus Center,"Function Room 2, Room 314",16
+Shapiro Campus Center,"Function Room 3, Room 313",24
+Cholmondeley's Coffee House,Cholmondeley's Coffee House,"50 (Band/Dance), 48 (Aud. Style), 31 (Standard)"
+Cholmondeley's Coffee House,Usdan Game Room,50
+Usdan Student Center,"Alumni Lounge, 2nd Floor","100 (Aud. Style), 72 (Banquet Style)"
+Usdan Student Center,"International Lounge, 1st Floor","120 (Aud. Style), 72 (Banquet Style)"
+Usdan Student Center,"Levin Ballroom, 1st Floor","450 (Aud. Style), 300 (Banquet Style), 750 (Empty)"
+Usdan Student Center,"North/South Mezzanines, 2nd Floor","80 (Aud. Style), 50 (Banquet Style)"
+Hassenfeld Conference Center,Sherman Function Hall,"350 Aud. Style, 240 Banquet Style"
+Hassenfeld Conference Center,"Lurias (1, 2, & 3)","30 Aud Style, 16 Conference Style"
+Hassenfeld Conference Center,Levine Ross (1 & 2),"30 Aud Style, 20 Banquet Style"
+Hassenfeld Conference Center,Geller Conference Room,40 Aud Style
+Hassenfeld Conference Center,Feldberg Lounge,50
+Hassenfeld Conference Center,The Stein,114
+Gosman Sports and Convocation Center,"Multipurpose Room, 3rd Floor",150 Aud Style
+Gosman Sports and Convocation Center,"Napoli Trophy Room, 3rd Floor",120 Aud Style
+"Faculty Club Main Dining Room, Faculty Center","Faculty Club Main Dining Room, Faculty Center",140-160 Banquet style
+"Faculty Club Main Dining Room, Faculty Center","Social Lounge, Faculty Center",50-100
+"Faculty Club Main Dining Room, Faculty Center","Wasserman Cinema, Sachar/IBS",240
+"Faculty Club Main Dining Room, Faculty Center","Auditorium, Golding (Rabb Quad)",150
+"Faculty Club Main Dining Room, Faculty Center","Auditorium, Lown (Rabb Quad)",108
+"Faculty Club Main Dining Room, Faculty Center","Auditorium, Olin-Sang (Rabb Quad)",250
+"Faculty Club Main Dining Room, Faculty Center","Lounge, Pearlman",40
+"Faculty Club Main Dining Room, Faculty Center","Auditorium, Schwartz",Tiered seating for 227
+"Faculty Club Main Dining Room, Faculty Center","Auditorium, Pollack",120
+"Faculty Club Main Dining Room, Faculty Center","Room 219, Shiffman (Rabb Quad)",100
+"Faculty Club Main Dining Room, Faculty Center","Classrooms: Lown, Golding, Olin-Sang, Shiffman, Schwartz and Pearlman",Varies
+"Faculty Club Main Dining Room, Faculty Center",Mandel Center 128 and 228,16
+"Faculty Club Main Dining Room, Faculty Center","Mandel Center 10, 11 and 303",24
+"Faculty Club Main Dining Room, Faculty Center",Mandel Center 328,20
+"Faculty Club Main Dining Room, Faculty Center","Mandel 3, Mandel Center",90
+"Faculty Club Main Dining Room, Faculty Center","Mandel 12, Mandel Center",48
+"Faculty Club Main Dining Room, Faculty Center","Rapaporte, Goldfarb Library",100
