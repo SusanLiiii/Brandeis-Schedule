@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2021_10_17_213655) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
-    t.index ["name"], name: "index_organizers_on_name"
+    t.index ["name"], name: "index_organizers_on_name", unique: true
   end
 
   create_table "participants", force: :cascade do |t|

@@ -7,6 +7,5 @@ class CreateOrganizers < ActiveRecord::Migration[6.1]
       t.timestamps
     end
     add_index :organizers, :name, unique: true
-    add_index :participants, :email, unique: true
   end
 end
