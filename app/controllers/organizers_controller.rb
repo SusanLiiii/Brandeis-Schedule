@@ -69,6 +69,6 @@ class OrganizersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def organizer_params
-      params.require(:organizer).permit(:name, :email)
+      params.require(:organizer).permit(:name, :email, :password, :password_confirmation)
     end
 end
