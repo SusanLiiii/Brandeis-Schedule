@@ -6,6 +6,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <h1 class="display-4">Brandeis Schedule</h1>
+      <p class="lead">Create a weekly schedule for your time at Brandeis</p>
+    </div>
+
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -16,8 +21,7 @@
             <div class="carousel-item active">
                 <img class="d-block w-100" src="https://www.brandeis.edu/student-activities/images/shapiro-campus-center.jpg" alt="First slide">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>My Caption Title (1st Image)</h5>
-                    <p>The whole caption will only show up if the screen is at least medium size.</p>
+                    <h1>Upcoming Events</h1>
                 </div>
             </div>
             <div class="carousel-item">
@@ -47,11 +51,7 @@
       <a class="btn btn-outline-primary" href="#">Sign up</a>
     </div> %>
 
-    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-      <h1 class="display-4">Brandeis Schedule</h1>
-      <p class="lead">Create a weekly schedule for your time at Brandeis</p>
-    </div>
-
+    
     <div class="container">
       <div class="card-deck mb-3 text-center">
         <%# <div class="card mb-4 box-shadow">
@@ -157,8 +157,20 @@
     </script> %>
   </body>
   <style>
-    body {background-color: #145374;}
-    h1   {color: white;}
-    p    {color: white;}
+    body {background-color: #f5f4f0;}
+    h1   {color: 00295E;}
+    p    {color: 264653;}
+    .carousel .carousel-item {
+      height: 500px;
+    }
+
+    .carousel-item img {
+        position: absolute;
+        object-fit:cover;
+        top: 0;
+        left: 0;
+        min-height: 500px;
+        color: white
+    }
   </style>
 </html>
