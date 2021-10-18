@@ -1,0 +1,8 @@
+.carousel-inner > .carousel-item > img {
+    width:640px;
+    height:360px;
+}
+
+body {
+    background-color: A2D2FF;
+  }
