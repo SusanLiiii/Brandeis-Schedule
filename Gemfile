@@ -16,6 +16,7 @@ gem 'icalendar', '2.7.1'
 gem 'watir', '~> 6.19', '>= 6.19.1'
 gem 'webdrivers', '~> 4.6'
 gem 'nokogiri', '~> 1.11', '>= 1.11.7'
+gem 'open-uri'
 
 group :development, :test do
   gem 'byebug',  '11.1.3', platforms: %i[mri mingw x64_mingw]
