@@ -21,7 +21,7 @@
           <p class="card-text"><%= event.description %></p>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">Organizer: <%= event.organizer_id %></li>
+          <li class="list-group-item">Organizer: <%= link_to event.organizer.name, event.organizer %></li>
         </ul>
         <div class="card-body">
           <a href="#" class="card-link"><%= link_to 'Show', event %></a>

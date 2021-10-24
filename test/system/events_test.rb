@@ -14,9 +14,12 @@ class EventsTest < ApplicationSystemTestCase
     visit events_url
     click_on "New Event"
 
+    fill_in "Date", with: @event.date
     fill_in "Description", with: @event.description
     fill_in "Name", with: @event.name
     fill_in "Organizer", with: @event.organizer_id
+    fill_in "Room", with: @event.room_id
+    fill_in "Time block", with: @event.time_block_id
     click_on "Create Event"
 
     assert_text "Event was successfully created"
@@ -27,9 +30,12 @@ class EventsTest < ApplicationSystemTestCase
     visit events_url
     click_on "Edit", match: :first
 
+    fill_in "Date", with: @event.date
     fill_in "Description", with: @event.description
     fill_in "Name", with: @event.name
     fill_in "Organizer", with: @event.organizer_id
+    fill_in "Room", with: @event.room_id
+    fill_in "Time block", with: @event.time_block_id
     click_on "Update Event"
 
     assert_text "Event was successfully updated"

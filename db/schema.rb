@@ -10,19 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_17_213655) do
+ActiveRecord::Schema.define(version: 2021_10_24_021529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "event_schedules", force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.bigint "room_id", null: false
+    t.bigint "time_block_id", null: false
+    t.date "date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_event_schedules_on_event_id"
+    t.index ["room_id"], name: "index_event_schedules_on_room_id"
+    t.index ["time_block_id"], name: "index_event_schedules_on_time_block_id"
+  end
 
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.bigint "organizer_id", null: false
+    t.bigint "room_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["name"], name: "index_events_on_name"
     t.index ["organizer_id"], name: "index_events_on_organizer_id"
+    t.index ["room_id"], name: "index_events_on_room_id"
   end
 
   create_table "organizers", force: :cascade do |t|
@@ -53,5 +66,17 @@ ActiveRecord::Schema.define(version: 2021_10_17_213655) do
     t.index ["name"], name: "index_rooms_on_name"
   end
 
+  create_table "time_blocks", force: :cascade do |t|
+    t.string "start_time"
+    t.string "end_time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["start_time"], name: "index_time_blocks_on_start_time"
+  end
+
+  add_foreign_key "event_schedules", "events"
+  add_foreign_key "event_schedules", "rooms"
+  add_foreign_key "event_schedules", "time_blocks"
   add_foreign_key "events", "organizers"
+  add_foreign_key "events", "rooms"
 end
