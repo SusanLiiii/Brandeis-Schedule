@@ -28,6 +28,8 @@ class OrganizersController < ApplicationController
 
     respond_to do |format|
       if @organizer.save
+        reset_session
+        log_in @organizer
         format.html { redirect_to @organizer, notice: 'Organizer was successfully created.' }
         format.json { render :show, status: :created, location: @organizer }
       else

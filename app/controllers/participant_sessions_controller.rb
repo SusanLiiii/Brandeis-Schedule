@@ -7,7 +7,7 @@ class ParticipantSessionsController < ApplicationController
 
     if participant && participant.authenticate(params[:session][:password])
       reset_session
-      log_in participant
+      participant_log_in participant
       redirect_to participant
     else
       flash.now[:danger] = 'Invalid email/password combination'
@@ -16,5 +16,7 @@ class ParticipantSessionsController < ApplicationController
   end
 
   def destroy
+    log_out
+    redirect_to root_url
   end
 end

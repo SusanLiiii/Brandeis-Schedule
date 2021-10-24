@@ -11,10 +11,12 @@ Rails.application.routes.draw do
     end
   end
   resources :organizers do
-    get  '/signup',  to: 'organizers#new'
-    get    '/login',   to: 'organizer_sessions#new'
-    post   '/login',   to: 'organizer_sessions#create'
-    delete '/logout',  to: 'organizer_sessions#destroy'
+    collection do
+      get  '/signup',  to: 'organizers#new'
+      get    '/login',   to: 'organizer_sessions#new'
+      post   '/login',   to: 'organizer_sessions#create'
+      delete '/logout',  to: 'organizer_sessions#destroy'
+    end
   end
 
   resources :rooms
