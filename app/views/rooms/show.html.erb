@@ -15,5 +15,24 @@
   <%= @room.capacity %>
 </p>
 
+<p>
+  <strong>Events:</strong>
+  <table>
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @room.events.each do |event| %>
+      <tr>
+        <td><%= link_to event.name, event %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</p>
+
 <%= link_to 'Edit', edit_room_path(@room) %> |
 <%= link_to 'Back', rooms_path %>

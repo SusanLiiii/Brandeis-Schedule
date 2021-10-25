@@ -33,7 +33,7 @@ CSV.foreach("data/room.csv", headers: true) do |row|
   rooms << Room.new(row.to_h)
 end
 Room.import rooms
-Room.create(location:"Null")
+Room.create(location:"Null", name:"Null", capacity:0)
 
 Organizer.create(name: "None", email: "calendar@brandeis.edu", password: '0000000')
 event_data = Icalendar::Calendar.parse(URI.open("https://www.trumba.com/calendars/brandeis-university.ics"))
@@ -75,7 +75,7 @@ events.each do |event|
     else
       room = Room.find_by(location: event.location.to_s)
       if room.nil?
-        room = Room.create(location: event.location.to_s)
+        room = Room.create(location: event.location.to_s, name: event.location.to_s)
       end
       event_schedule_data["room_id"] = room.id
     end

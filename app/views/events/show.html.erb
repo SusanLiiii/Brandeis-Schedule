@@ -12,7 +12,12 @@
 
 <p>
   <strong>Organizer:</strong>
-  <%= @event.organizer_id %>
+  <%= link_to @event.organizer.name, @event.organizer %>
+</p>
+
+<p>
+  <strong>Organizer:</strong>
+  <%= link_to @event.room.name, @event.room %>
 </p>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
