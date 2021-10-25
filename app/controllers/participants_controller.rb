@@ -29,7 +29,7 @@ class ParticipantsController < ApplicationController
     respond_to do |format|
       if @participant.save
         reset_session
-        log_in @participant
+        participant_log_in @participant
         format.html { redirect_to @participant, notice: 'Participant was successfully created.' }
         format.json { render :show, status: :created, location: @participant }
       else
