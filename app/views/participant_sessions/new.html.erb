@@ -31,7 +31,6 @@
         </div>
       </div>
       <div class="card-body">
-        <form>
               <%= form_with(url: login_participants_path, scope: :session, local: true) do |f| %>
 
             <%# <%= f.label :email %>
@@ -57,7 +56,6 @@
             <%= f.submit "Log in", class:"btn float-right login_btn"%>
           </div>
           <% end %>
-        </form>
       </div>
       <div class="card-footer">
         <div class="d-flex justify-content-center links">
@@ -162,23 +160,3 @@
 
 </style>
 </html>
-
-<% provide(:title, "Participant Log in") %>
-<h1>Participant Log in</h1>
-
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_with(url: login_participants_path, scope: :session, local: true) do |f| %>
-
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
-
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
-
-      <%= f.submit "Log in", class: "btn btn-primary" %>
-    <% end %>
-
-    <p>New participant? <%= link_to "Sign up now!", signup_participants_path %></p>
-  </div>
-</div>
