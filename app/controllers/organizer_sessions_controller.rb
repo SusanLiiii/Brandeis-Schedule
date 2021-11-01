@@ -4,13 +4,17 @@ class OrganizerSessionsController < ApplicationController
 
   def create
     organizer = Organizer.find_by(name: params[:session][:name])
-    if organizer && organizer.authenticate(params[:session][:password])
-      reset_session
-      organizer_log_in organizer
-      redirect_to organizer
-    else
-      flash.now[:danger] = 'Invalid email/password combination'
-      render 'new'
+
+    respond_to do |format|
+      if organizer && organizer.authenticate(params[:session][:password])
+        reset_session
+        organizer_log_in organizer
+        format.html { redirect_to organizer, notice: 'Organizer was successfully created.' }
+        format.json { render :show, status: :created, location: organizer }
+      else
+        format.html { render :new }
+        format.json { render json: organizer.errors, status: :unprocessable_entity }
+      end
     end
   end
 

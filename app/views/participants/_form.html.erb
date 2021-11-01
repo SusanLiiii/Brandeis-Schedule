@@ -31,7 +31,6 @@
         </div>
       </div>
       <div class="card-body">
-        <form>
           <%= form_with(model: @participant, local: true) do |f| %>
             <% if participant.errors.any? %>
               <div id="error_explanation">
@@ -74,7 +73,6 @@
             <%= f.submit "Create my account", class:"btn float-right login_btn"%>
           </div>
           <% end %>
-        </form>
       </div>
     </div>
   </div>
@@ -171,29 +169,3 @@
 
 </style>
 </html>
-
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_with(model: @participant, local: true) do |f| %>
-        <% if participant.errors.any? %>
-          <div id="error_explanation">
-          <h2><%= pluralize(participant.errors.count, "error") %> prohibited this participant from being saved:</h2>
-          <ul>
-            <% participant.errors.each do |error| %>
-              <li><%= error.full_message %></li>
-            <% end %>
-          </ul>
-          </div>
-        <% end %>
-      <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control' %>
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
-      <%= f.submit "Create my account", class: "btn btn-primary" %>
-    <% end %>
-  </div>
-</div>

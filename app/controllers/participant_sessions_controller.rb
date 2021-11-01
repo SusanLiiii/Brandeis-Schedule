@@ -5,13 +5,16 @@ class ParticipantSessionsController < ApplicationController
   def create
     participant = Participant.find_by(email: params[:session][:email].downcase)
 
-    if participant && participant.authenticate(params[:session][:password])
+    respond_to do |format|
+      if participant && participant.authenticate(params[:session][:password])
       reset_session
       participant_log_in participant
-      redirect_to participant
-    else
-      flash.now[:danger] = 'Invalid email/password combination'
-      render 'new'
+      format.html { redirect_to participant, notice: 'Participant was successfully created.' }
+      format.json { render :show, status: :created, location: participant }
+      else
+        format.html { render :new }
+        format.json { render json: participant.errors, status: :unprocessable_entity }
+      end
     end
   end
 
