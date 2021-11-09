@@ -1,0 +1,100 @@
+    <!-- Creates a loop of @posts.count / 3 arrays -->
+    <% @rooms.in_groups_of(3).each do |room_array| %>
+    <div class="row">
+        <!-- For each post in the array, give it a class of "col-4" which is 3 per row-->
+        <% room_array.each do |room| %>
+        <!-- If posts.count = 4, last array will be [post4, nil, nil] so if it's nil, don't do anything or you'll get an error-->
+        <%  unless room.nil? %>
+        <div class="col-4">
+            <div class="card p-3 mb-2">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex flex-row align-items-center">
+                        <div class="icon"> <i class="bx bxl-mailchimp"></i> </div>
+                        <%# <div class="ms-2 c-details">
+                            <h6 class="mb-0">Mailchimp</h6> <span>1 days ago</span>
+                        </div> %>
+                        <div class="ms-2 c-details">
+                            <h6 class="mb-0"><%= room.location %></h6>
+                        </div>
+                    </div>
+                    <%# <div class="badge"> <span>Design</span> </div> %>
+                </div>
+                <div class="mt-5">
+                    <h3 class="heading"><%= link_to room.name, room, class:"link" %></h3>
+                </div>
+            </div>
+            <br>
+        </div>
+        <!-- Ends the "unless post.nil" block -->
+        <% end %>
+        <!-- Ends the "post_array.each" block -->
+        <% end %>
+    </div>
+    <!-- Ends the "@posts.in_groups_of" block -->
+    <% end %>
+    <style>
+      body {
+          background-color: #eee
+      }
+
+      .card {
+          border: none;
+          border-radius: 10px
+      }
+
+      .c-details span {
+          font-weight: 300;
+          font-size: 13px
+      }
+
+      .icon {
+          width: 50px;
+          height: 50px;
+          background-color: #eee;
+          border-radius: 15px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 39px
+      }
+
+      .badge span {
+          background-color: #fffbec;
+          width: 60px;
+          height: 25px;
+          padding-bottom: 3px;
+          border-radius: 5px;
+          display: flex;
+          color: #fed85d;
+          justify-content: center;
+          align-items: center
+      }
+
+      .progress {
+          height: 10px;
+          border-radius: 10px
+      }
+
+      .progress div {
+          background-color: 003478
+      }
+
+      .text1 {
+          font-size: 14px;
+          font-weight: 600
+      }
+
+      .text2 {
+          color: #a5aec0;
+      }
+
+      .link{
+          color: black;
+          text-decoration:none; 
+      }
+      .link:hover{
+          color:white;
+      }
+     
+
+    </style>

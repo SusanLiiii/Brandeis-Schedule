@@ -6,4 +6,7 @@ class Participant < ApplicationRecord
 
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
+
+  has_many :participant_schedules
+  has_many :events, through: :participant_schedules
 end

@@ -6,5 +6,19 @@
   <%= @participant.email %>
 </p>
 
+<p>
+  <strong>Today's event:</strong>
+  <% Calendar.new(EventSchedule.where(event_id: @participant.events.ids)).get_today.each do |event|%>
+    <%= link_to event.name, event %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Future event:</strong>
+  <% Calendar.new(EventSchedule.where(event_id: @participant.events.ids)).get_future.each do |event|%>
+    <%= link_to event.name, event %>
+  <% end %>
+</p>
+
 <%= link_to 'Edit', edit_participant_path(@participant) %> |
-<%= link_to 'Back', participants_path %>
+<%= link_to 'Back', root_path %>

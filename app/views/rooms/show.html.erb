@@ -17,21 +17,34 @@
 
 <p>
   <strong>Events:</strong>
-  <table>
-  <thead>
-    <tr>
-      <th>Name</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @room.events.each do |event| %>
-      <tr>
-        <td><%= link_to event.name, event %></td>
-      </tr>
+  <h1>Today's Events</h1>
+  <% Calendar.new(@room.event_schedules).get_today.each do |event| %>
+    <%= link_to event.name, event %>
+    <% if logged_in?%>
+      <% if is_organizer? %>
+      <% else %>
+        <% if current_user.events.where(id:event.id).empty? %>
+          <%= button_to "Add to My Schedule", add_participants_path, method: :post, params: { event_id: event.id }%>
+        <% else %>
+          <div> Attending</div>
+        <% end %>
+      <% end %>
     <% end %>
-  </tbody>
-</table>
+  <% end %>
+  <h1>Future Events</h1>
+  <% Calendar.new(@room.event_schedules).get_future.each do |event| %>
+    <%= link_to event.name, event %>
+    <% if logged_in?%>
+      <% if is_organizer? %>
+      <% else %>
+        <% if current_user.events.where(id:event.id).empty? %>
+          <%= button_to "Add to My Schedule", add_participants_path, method: :post, params: { event_id: event.id }%>
+        <% else %>
+          <div> Attending</div>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_room_path(@room) %> |

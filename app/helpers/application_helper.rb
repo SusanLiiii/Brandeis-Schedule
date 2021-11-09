@@ -20,4 +20,12 @@ module ApplicationHelper
     reset_session
     @current_user = nil
   end
+
+  def get_room_list
+    entry = [['Select a room', '']]
+    Room.all.each do |room|
+      entry << ["#{room.name} #{room.location}", room.id]
+    end
+    return entry
+  end
 end

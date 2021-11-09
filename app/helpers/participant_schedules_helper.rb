@@ -1,0 +1,2 @@
+module ParticipantSchedulesHelper
+end

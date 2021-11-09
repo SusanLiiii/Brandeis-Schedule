@@ -87,27 +87,8 @@ events.each do |event|
   event_schedule_data["start_time"] = 1
   event_schedule_data["end_time"] = 48
   if event.dtstart.instance_of?(Icalendar::Values::DateTime)
-    time_block_start = TimeBlock.find_by(start_time: "#{event.dtstart.hour} #{event.dtstart.min}")
-    time_block_end = TimeBlock.find_by(end_time: "#{event.dtend.hour} #{event.dtend.min}")
-
-    if time_block_start.nil?
-      min = event.dtstart.min
-      if min < 30
-        time_block_start = TimeBlock.find_by(start_time: "#{event.dtstart.hour} 0")
-      else
-        time_block_start = TimeBlock.find_by(start_time: "#{event.dtstart.hour} 30")
-      end
-    end
-    if time_block_end.nil?
-      min = event.dtend.min
-      if min < 30
-        time_block_end = TimeBlock.find_by(end_time: "#{event.dtend.hour} 30")
-      else
-        time_block_end = TimeBlock.find_by(end_time: "#{event.dtstart.hour+1} 0")
-      end
-    end
-    event_schedule_data["start_time"] = time_block_start.id
-    event_schedule_data["end_time"] = time_block_end.id
+    event_schedule_data["start_time"] = Calendar.find_start_time(event.dtstart).id
+    event_schedule_data["end_time"] = Calendar.find_end_time(event.dtend).id
   end
 
   (event_schedule_data["start_time"]..event_schedule_data["end_time"]).each do |time_id|

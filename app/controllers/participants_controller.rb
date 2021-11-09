@@ -63,6 +63,15 @@ class ParticipantsController < ApplicationController
     end
   end
 
+  def add_to_schedule
+    @participant = Participant.find(session[:participant_id])
+    if !@participant.events.include?(Event.find(params[:event_id]))
+      ParticipantSchedule.create(participant_id: @participant.id, event_id: params[:event_id])
+      flash[:success] = "You have successfully enrolled in this course."
+      redirect_to @participant
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_participant

@@ -61,6 +61,19 @@ class EventsController < ApplicationController
     end
   end
 
+  def search
+    @events = Event.all
+  end
+
+  def do_search
+      if params[:room].blank?
+        @events = Event.where("name LIKE ?", "%#{params[:name]}%")
+      else
+        @events = Room.find(params[:room]).events.where("name LIKE ?", "%#{params[:name]}%")
+      end
+      render "search"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event

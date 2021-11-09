@@ -1,0 +1,16 @@
+<%= form_tag(do_search_rooms_path, method: "get", class: "form") do %>
+  <div class="row tbalign-items-centerp-2">
+    <div class="col-sm-8">
+    <div class="row">
+      <div class="col">
+        <%= text_field_tag(:name, "", class: "form-control-sm", placeholder: "search for") %>
+      </div>
+      <div class="col">
+        <%= submit_tag("Search", class: "btn form-control-sm") %>
+      </div>
+    </div>
+    </div>
+  </div>
+<% end %>
+<%= button_to "Back", rooms_path, method: :get%>
+<%= render "index" %>

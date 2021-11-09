@@ -1,6 +1,15 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: [:show, :edit, :update, :destroy]
 
+  def search
+    @rooms = Room.all
+  end
+
+  def do_search
+    @rooms = Room.where("name LIKE ?", "%#{params[:name]}%")
+    render "search"
+  end
+
   # GET /rooms
   # GET /rooms.json
   def index

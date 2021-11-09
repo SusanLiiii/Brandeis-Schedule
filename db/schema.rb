@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_24_021529) do
+ActiveRecord::Schema.define(version: 2021_11_09_024427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2021_10_24_021529) do
     t.bigint "room_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "capacity"
     t.index ["organizer_id"], name: "index_events_on_organizer_id"
     t.index ["room_id"], name: "index_events_on_room_id"
   end
@@ -45,6 +46,15 @@ ActiveRecord::Schema.define(version: 2021_10_24_021529) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
     t.index ["name"], name: "index_organizers_on_name", unique: true
+  end
+
+  create_table "participant_schedules", force: :cascade do |t|
+    t.bigint "participant_id", null: false
+    t.bigint "event_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_participant_schedules_on_event_id"
+    t.index ["participant_id"], name: "index_participant_schedules_on_participant_id"
   end
 
   create_table "participants", force: :cascade do |t|
@@ -79,4 +89,6 @@ ActiveRecord::Schema.define(version: 2021_10_24_021529) do
   add_foreign_key "event_schedules", "time_blocks"
   add_foreign_key "events", "organizers"
   add_foreign_key "events", "rooms"
+  add_foreign_key "participant_schedules", "events"
+  add_foreign_key "participant_schedules", "participants"
 end
