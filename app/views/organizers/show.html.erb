@@ -10,5 +10,18 @@
   <%= @organizer.email %>
 </p>
 
+<p>
+  <strong>Today's event:</strong>
+  <% Calendar.new(EventSchedule.where(event_id: @organizer.events.ids)).get_today.each do |event|%>
+    <%= link_to event.name, event %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Future event:</strong>
+  <% Calendar.new(EventSchedule.where(event_id: @organizer.events.ids)).get_future.each do |event|%>
+    <%= link_to event.name, event %>
+  <% end %>
+</p>
 <%= link_to 'Edit', edit_organizer_path(@organizer) %> |
 <%= link_to 'Back', root_path %>

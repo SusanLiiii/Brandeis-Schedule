@@ -9,6 +9,10 @@
         <%= select_tag(:room,
         options_for_select(get_room_list), class: "form-control-sm") %>
       </div>
+      <div class="col pt-1">
+        <%= select_tag(:org,
+        options_for_select(get_organizer_list), class: "form-control-sm") %>
+      </div>
       <div class="col">
         <%= submit_tag("Search", class: "btn form-control-sm") %>
       </div>

@@ -37,6 +37,9 @@
                 </div>
                 <% if logged_in?%>
                     <% if is_organizer? %>
+                        <% if !current_user.events.where(id:event.id).empty? %>
+                            <div> My Event</div>
+                        <% end %>
                     <% else %>
                         <% if current_user.events.where(id:event.id).empty? %>
                             <%= button_to "Add to My Schedule", add_participants_path, method: :post, params: { event_id: event.id }%>
@@ -93,6 +96,9 @@
                 </div>
                 <% if logged_in?%>
                     <% if is_organizer? %>
+                        <% if !current_user.events.where(id:event.id).empty? %>
+                            <div> My Event</div>
+                        <% end %>
                     <% else %>
                         <% if current_user.events.where(id:event.id).empty? %>
                             <%= button_to "Add to My Schedule", add_participants_path, method: :post, params: { event_id: event.id }%>

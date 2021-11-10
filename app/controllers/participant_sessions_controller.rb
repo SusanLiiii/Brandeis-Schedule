@@ -9,7 +9,7 @@ class ParticipantSessionsController < ApplicationController
       if participant && participant.authenticate(params[:session][:password])
       reset_session
       participant_log_in participant
-      format.html { redirect_to participant, notice: 'Participant was successfully created.' }
+      format.html { redirect_to participant, notice: 'Participant was successfully logged in.' }
       format.json { render :show, status: :created, location: participant }
       else
         format.html { render :new }

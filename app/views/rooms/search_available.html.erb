@@ -1,0 +1,22 @@
+<%= form_tag(do_search_available_rooms_path, method: "get", class: "form") do %>
+  <div class="row tbalign-items-centerp-2">
+    <div class="col-sm-8">
+    <div class="row">
+      <div class="col pt-1">
+        <%= date_select(:event_date, :date, :start_year => Date.current.year, :end_year => Date.current.year + 10) %>
+      </div>
+       <div class="col pt-1">
+        <%= time_select(:time, :start_time, {minute_step: 30}, { class: 'form-control' })%>
+      </div>
+      <div class="col pt-1">
+        <%= time_select(:time, :end_time, {minute_step: 30}, { class: 'form-control' }) %>
+      </div>
+      <div class="col">
+        <%= submit_tag("Find Available Room", class: "btn form-control-sm") %>
+      </div>
+    </div>
+    </div>
+  </div>
+<% end %>
+<%= button_to "Back", rooms_path, method: :get%>
+<%= render "index",params:{event_date: params[:event_date], time: params[:time]} %>

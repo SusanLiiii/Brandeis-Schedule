@@ -1,5 +1,4 @@
-<h1>New Event</h1>
-
-<%= render 'form', event: @event %>
+<h1>Schedule New Event</h1>
+<%= render 'form', event: @event, room_id: @room_id, event_date: @event_date, start_time: @start_time, end_time: @end_time%>
 
 <%= link_to 'Back', events_path %>

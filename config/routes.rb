@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :participant_schedules
-  resources :event_schedules
   resources :events do
     collection do
       get 'search'
@@ -30,6 +28,8 @@ Rails.application.routes.draw do
     collection do
       get 'search'
       get 'do_search'
+      get 'search_available'
+      get 'do_search_available'
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

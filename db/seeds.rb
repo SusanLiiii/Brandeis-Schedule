@@ -87,8 +87,8 @@ events.each do |event|
   event_schedule_data["start_time"] = 1
   event_schedule_data["end_time"] = 48
   if event.dtstart.instance_of?(Icalendar::Values::DateTime)
-    event_schedule_data["start_time"] = Calendar.find_start_time(event.dtstart).id
-    event_schedule_data["end_time"] = Calendar.find_end_time(event.dtend).id
+    event_schedule_data["start_time"] = Calendar.new(EventSchedule.all).find_start_time(event.dtstart).id
+    event_schedule_data["end_time"] = Calendar.new(EventSchedule.all).find_end_time(event.dtend).id
   end
 
   (event_schedule_data["start_time"]..event_schedule_data["end_time"]).each do |time_id|

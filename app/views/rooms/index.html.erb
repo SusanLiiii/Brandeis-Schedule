@@ -1,6 +1,11 @@
 <div class="container">
   <p id="notice"><%= notice %></p>  
     <%= button_to "Search", search_rooms_path, method: :get%>
+    <% if logged_in? %>
+      <% if is_organizer? %>
+        <%= button_to "Find a room", search_available_rooms_path, method: :get %>
+      <% end %>
+    <% end %>
     <%= render "index" %>
   <%= link_to 'New Room', new_room_path %>
 </div>

@@ -9,7 +9,7 @@ class OrganizerSessionsController < ApplicationController
       if organizer && organizer.authenticate(params[:session][:password])
         reset_session
         organizer_log_in organizer
-        format.html { redirect_to organizer, notice: 'Organizer was successfully created.' }
+        format.html { redirect_to organizer, notice: 'Organizer was successfully logged in.' }
         format.json { render :show, status: :created, location: organizer }
       else
         format.html { render :new }

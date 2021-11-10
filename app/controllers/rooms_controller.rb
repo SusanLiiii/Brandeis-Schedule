@@ -10,6 +10,17 @@ class RoomsController < ApplicationController
     render "search"
   end
 
+  def search_available
+    @rooms = Room.all
+        puts "hello"
+  end
+
+  def do_search_available
+    time_list = get_date_time(params[:event_date], params[:time])
+    @rooms = Calendar.new(EventSchedule.all).find_available_rooms(time_list[0], time_list[1], time_list[2])
+    render "search_available"
+  end
+
   # GET /rooms
   # GET /rooms.json
   def index
