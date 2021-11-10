@@ -33,15 +33,15 @@ class Calendar
   end
 
   def get_today
-    return Event.where(id: @calendar.where(date: Date.today).pluck(:event_id))
+    return Event.where(id: @calendar.where(date: Date.today.in_time_zone("Eastern Time (US & Canada)").to_date).pluck(:event_id))
   end
 
   def get_future
-    return Event.where(id: @calendar.where("date > ?", Date.today).pluck(:event_id))
+    return Event.where(id: @calendar.where("date > ?", Date.today.in_time_zone("Eastern Time (US & Canada)").to_date).pluck(:event_id))
   end
 
   def get_past
-    return Event.where(id: @calendar.where("date < ?", Date.today).pluck(:event_id))
+    return Event.where(id: @calendar.where("date < ?", Date.today.in_time_zone("Eastern Time (US & Canada)").to_date).pluck(:event_id))
   end
 
   def get_by_date(date)
@@ -67,14 +67,14 @@ class Calendar
   end
 
   def get_current_event
-    return @calendar.where(date: Date.today).where(time_block_id: find_start_time(DateTime.now).id)
+    return @calendar.where(date: Date.today.in_time_zone("Eastern Time (US & Canada)").to_date).where(time_block_id: find_start_time(DateTime.now.in_time_zone("Eastern Time (US & Canada)")).id)
   end
 
   def get_next_event
-    date = Date.today
-    event = @calendar.where(date: date).where("time_block_id > ?", find_start_time(DateTime.now).id)
+    date = Date.today.in_time_zone("Eastern Time (US & Canada)").to_date
+    event = @calendar.where(date: date).where("time_block_id > ?", find_start_time(DateTime.now.in_time_zone("Eastern Time (US & Canada)")).id)
     while event.empty?
-      if @calendar.where("date > ?", Date.today).empty?
+      if @calendar.where("date > ?", Date.today.in_time_zone("Eastern Time (US & Canada)").to_date).empty?
         return []
       else
         date += 1
