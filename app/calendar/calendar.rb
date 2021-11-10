@@ -67,12 +67,12 @@ class Calendar
   end
 
   def get_current_event
-    return @calendar.where(date: Date.today).where(time_block_id: find_start_time(Time.now).id)
+    return @calendar.where(date: Date.today).where(time_block_id: find_start_time(DateTime.now).id)
   end
 
   def get_next_event
     date = Date.today
-    event = @calendar.where(date: date).where("time_block_id > ?", find_start_time(Time.now).id)
+    event = @calendar.where(date: date).where("time_block_id > ?", find_start_time(DateTime.now).id)
     while event.empty?
       if @calendar.where("date > ?", Date.today).empty?
         return []
