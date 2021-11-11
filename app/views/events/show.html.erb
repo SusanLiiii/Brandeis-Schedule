@@ -1,3 +1,4 @@
+<html>
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -30,7 +31,7 @@
   <% if is_organizer? %>
   <% else %>
     <% if current_user.events.where(id:@event.id).empty? %>
-      <%= button_to "Add to My Schedule", add_participants_path, method: :post, params: { event_id: @event.id }%>
+      <%= button_to "Add to My Schedule", add_participants_path, method: :post, params: { event_id: @event.id }, class:"btn float-right login_btn"%>
     <% else %>
       <div> Attending</div>
     <% end %>
@@ -44,3 +45,30 @@
   <strong>Participants:</strong>
   <%= @event.participants.size %>
 </p>
+<style>
+      body {
+          background-color: #eee
+      }
+      
+      .link{
+          color: black;
+          text-decoration:none; 
+      }
+      .link:hover{
+          background-color:transparent;
+          color:#003478;
+      }
+
+      .login_btn{
+        color: white;
+        background-color: #003478;
+        }
+
+        .login_btn:hover{
+        color: black;
+        background-color: white;
+        }
+     
+
+    </style>
+  </html>

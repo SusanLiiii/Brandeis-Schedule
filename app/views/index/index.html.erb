@@ -19,16 +19,25 @@
       </ol>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img class="d-block w-100" src="https://www.brandeis.edu/student-activities/images/shapiro-campus-center.jpg" alt="First slide">
+          <a href="/events/1"><img class="d-block w-100" src="https://www.brandeis.edu/student-activities/images/shapiro-campus-center.jpg" alt="First slide"></a>
           <div class="carousel-caption d-none d-md-block">
-            <h1>Upcoming Events</h1>
+            <h1 id="caption">First slide label</h1>
+            <p id="caption">Some representative placeholder content for the first slide.</p>
           </div>
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100" src="https://www.brandeis.edu/student-activities/images/usdan.jpg" alt="Second slide">
+          <a href="/events/2"><img class="d-block w-100" src="https://www.brandeis.edu/student-activities/images/usdan.jpg" alt="Second slide"></a>
+          <div class="carousel-caption d-none d-md-block">
+            <h1 id="caption">Second slide label</h1>
+            <p id="caption">Some representative placeholder content for the first slide.</p>
+          </div>
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100" src="https://images.squarespace-cdn.com/content/v1/5878eed0414fb53c291528ff/1484757372352-MO18HNE017HVLZMSUXO3/Usdan+Websized-29.jpg?format=2500w" alt="Third slide">
+          <a href="/events/3"><img class="d-block w-100" src="https://images.squarespace-cdn.com/content/v1/5878eed0414fb53c291528ff/1484757372352-MO18HNE017HVLZMSUXO3/Usdan+Websized-29.jpg?format=2500w" alt="Third slide"></a>
+          <div class="carousel-caption d-none d-md-block">
+            <h1 id="caption">Third slide label</h1>
+            <p id="caption">Some representative placeholder content for the first slide.</p>
+          </div>
         </div>
       </div>
       <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -41,35 +50,10 @@
       </a>
     </div>
     </div>
-    <%# <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-      <h5 class="my-0 mr-md-auto font-weight-normal">Company name</h5>
-      <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark" href="#">Features</a>
-        <a class="p-2 text-dark" href="#">Enterprise</a>
-        <a class="p-2 text-dark" href="#">Support</a>
-        <a class="p-2 text-dark" href="#">Pricing</a>
-      </nav>
-      <a class="btn btn-outline-primary" href="#">Sign up</a>
-    </div> %>
 
     
     <div class="container">
       <div class="card-deck mb-3 text-center">
-        <%# <div class="card mb-4 box-shadow">
-          <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Free</h4>
-          </div>
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">$0 <small class="text-muted">/ mo</small></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <li>10 users included</li>
-              <li>2 GB of storage</li>
-              <li>Email support</li>
-              <li>Help center access</li>
-            </ul>
-            <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button>
-          </div>
-        </div> %>
         <% if logged_in? %>
           <div class="card mb-4 box-shadow">
             <div class="card-header">
@@ -122,7 +106,7 @@
                     <li>Learn More</li>
                   </ul>
                   <% if current_user.events.where(id:event.id).empty? %>
-                    <%= button_to "Add to My Schedule", add_participants_path, method: :post, params: { event_id: event.id }%>
+                    <%= button_to "Add to My Schedule", add_participants_path, method: :post, params: { event_id: event.id }, class:"btn float-right login_btn"%>
                   <% else %>
                     <div> Attending</div>
                   <% end %>
@@ -205,6 +189,28 @@
   #carouselExampleIndicators {
       padding: 0.5rem;
       margin-bottom: 1rem;
+  }
+
+  .login_btn{
+  color: white;
+  background-color: #003478;
+  }
+
+  .login_btn:hover{
+  color: black;
+  background-color: white;
+  }
+
+  #caption{
+    color:white;
+  }
+
+  .carousel-control-prev:hover{
+    background-color:transparent;
+  }
+
+  .carousel-control-next:hover{
+    background-color:transparent;
   }
 
   </style>
