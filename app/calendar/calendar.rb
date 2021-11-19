@@ -26,7 +26,11 @@ class Calendar
       if min < 30
         time_block_end = TimeBlock.find_by(end_time: "#{end_time.hour} 30")
       else
-        time_block_end = TimeBlock.find_by(end_time: "#{end_time.hour+1} 0")
+        hour = end_time.hour + 1
+        if hour == 24
+          hour = 0
+        end
+        time_block_end = TimeBlock.find_by(end_time: "#{hour} 0")
       end
     end
     return time_block_end
