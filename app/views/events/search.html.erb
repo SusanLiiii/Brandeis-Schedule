@@ -1,24 +1,77 @@
-<%= form_tag(do_search_events_path, method: "get", class: "form") do %>
-  <div class="row tbalign-items-centerp-2">
-    <div class="col-sm-8">
-    <div class="row">
-      <div class="col">
-        <%= text_field_tag(:name, "", class: "form-control-sm", placeholder: "search for") %>
+<html>
+  <div class="container mt-4">
+      <div class="row d-flex justify-content-center">
+      <%= form_tag(do_search_events_path, method: "get", class: "form") do %>
+          <div class="col-md-10">
+              <div class="card p-3 py-4">
+                  <h5>Filters</h5>
+                  <div class="row g-1 mt-1">
+                      <div class="col pt-2">
+                        <%= select_tag(:room,
+                        options_for_select(get_room_list), class: "form-control-lg") %>
+                      </div>
+                      <div class="col pt-2">
+                        <%= select_tag(:org,
+                        options_for_select(get_organizer_list), class: "form-control-lg") %>
+                      </div>
+                      <%# <div class="col-md-2">
+                          <div class="dropdown"> <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false"> Any Status </button>
+                              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                  <li><a class="dropdown-item" href="#">Rural</a></li>
+                                  <li><a class="dropdown-item" href="#">Urban</a></li>
+                                  <li><a class="dropdown-item" href="#">All</a></li>
+                              </ul>
+                          </div>
+                      </div> %>
+                      <div class="d-flex justify-content-center px-5 col-md-7">
+                        <%= text_field_tag(:name, "", class: "form-control", placeholder: "Enter your interested event") %>
+                        <%= button_tag( :class => "button_green") do %>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                          </svg>
+                        <% end %>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <% end %>
+          <%= button_to "Back", events_path, method: :get%>
+          <%= render "index" %>
       </div>
-      <div class="col pt-1">
-        <%= select_tag(:room,
-        options_for_select(get_room_list), class: "form-control-sm") %>
-      </div>
-      <div class="col pt-1">
-        <%= select_tag(:org,
-        options_for_select(get_organizer_list), class: "form-control-sm") %>
-      </div>
-      <div class="col">
-        <%= submit_tag("Search", class: "btn form-control-sm") %>
-      </div>
-    </div>
-    </div>
   </div>
-<% end %>
-<%= button_to "Back", events_path, method: :get%>
-<%= render "index" %>
+
+  
+
+  <style>
+        .form-control-lg{
+          width: 100%;
+          background-color: white;
+          padding:10px;
+          border:0;
+          box-shadow:0 0 15px 4px rgba(0,0,0,0.06); */
+          height: 30px;
+        } 
+        
+        .bi bi-search{
+          height: 50px
+        }
+        
+
+    .btn-secondary,
+    .btn-secondary:focus,
+    .btn-secondary:active {
+        color: #fff;
+        background-color: #003478 !important;
+        border-color: #00838f !important;
+        box-shadow: none;
+        width: 100%
+    }
+
+
+    .form-control:focus {
+        box-shadow: none;
+        border: 1px solid #00838f
+    }
+    
+  </style>
+</html>
