@@ -26,7 +26,7 @@
                     <h3 class="heading"><%= link_to event.name, event, class:"link" %></h3>
                     <details>
                       <summary>Learn More</summary>
-                        <p><%= event.description %></p>
+                        <p><%= event.description.html_safe %></p>
                     </details>
                     <div class="mt-5">
                         <div class="progress">
@@ -85,7 +85,7 @@
                     <h3 class="heading"><%= link_to event.name, event, class:"link" %></h3>
                     <details>
                       <summary>Learn More</summary>
-                        <p><%= event.description %></p>
+                        <p><%= event.description.html_safe %></p>
                     </details>
                     <div class="mt-5">
                         <div class="progress">

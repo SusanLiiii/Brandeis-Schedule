@@ -1,50 +1,52 @@
 <html>
-<p id="notice"><%= notice %></p>
+  <div class="card">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @event.name %>
-</p>
+  <p>
+    <strong>Name:</strong>
+    <%= @event.name %>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @event.description.html_safe %>
+  </p>
 
-<p>
-  <strong>Organizer:</strong>
-  <%= link_to @event.organizer.name, @event.organizer %>
-</p>
+  <p>
+    <strong>Organizer:</strong>
+    <%= link_to @event.organizer.name, @event.organizer %>
+  </p>
 
-<p>
-  <strong>Location:</strong>
-  <%= link_to @event.room.name, @event.room %>
-</p>
+  <p>
+    <strong>Location:</strong>
+    <%= link_to @event.room.name, @event.room %>
+  </p>
 
-<p>
-  <strong>Time:</strong>
-  <%= @event.event_schedules.first.date %>
-  <%= @event.time_blocks.first.start_time %> - <%= @event.time_blocks.last.end_time %>
-</p>
+  <p>
+    <strong>Time:</strong>
+    <%= @event.event_schedules.first.date %>
+    <%= @event.time_blocks.first.start_time %> - <%= @event.time_blocks.last.end_time %>
+  </p>
 
-<% if logged_in?%>
-  <% if is_organizer? %>
-  <% else %>
-    <% if current_user.events.where(id:@event.id).empty? %>
-      <%= button_to "Add to My Schedule", add_participants_path, method: :post, params: { event_id: @event.id }, class:"btn float-right login_btn"%>
+  <% if logged_in?%>
+    <% if is_organizer? %>
     <% else %>
-      <div> Attending</div>
+      <% if current_user.events.where(id:@event.id).empty? %>
+        <%= button_to "Add to My Schedule", add_participants_path, method: :post, params: { event_id: @event.id }, class:"btn float-right login_btn"%>
+      <% else %>
+        <div> Attending</div>
+      <% end %>
     <% end %>
   <% end %>
-<% end %>
+  </div>
 
-<%= link_to 'All Events', events_path %>|
-<%= link_to 'Room', @event.room %>
+  <%= link_to 'All Events', events_path %>|
+  <%= link_to 'Room', @event.room %>
 
-<p>
-  <strong>Participants:</strong>
-  <%= @event.participants.size %>
-</p>
+  <p>
+    <strong>Participants:</strong>
+    <%= @event.participants.size %>
+  </p>
 <style>
       body {
           background-color: #eee
@@ -69,6 +71,12 @@
         background-color: white;
         }
      
+      .container{
+        background:white;
+        padding: 10px;
+      }
 
+      
+      
     </style>
   </html>
