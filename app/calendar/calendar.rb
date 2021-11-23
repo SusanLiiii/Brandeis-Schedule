@@ -1,5 +1,6 @@
 class Calendar
 
+  # Search for events within given range
   def initialize(event_schedule)
     @calendar = event_schedule
   end

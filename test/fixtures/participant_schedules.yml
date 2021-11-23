@@ -7,3 +7,7 @@ one:
 two:
   participant: two
   event: two
+
+three:
+  participant: one
+  event: two

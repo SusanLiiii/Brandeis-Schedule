@@ -1,9 +1,17 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  start_time: MyString
-  end_time: MyString
+  start_time: "12 0"
+  end_time: "12 30"
 
 two:
-  start_time: MyString
-  end_time: MyString
+  start_time: "12 30"
+  end_time: "13 0"
+
+three:
+  start_time: "13 0"
+  end_time: "13 30"
+
+four:
+  start_time: "13 30"
+  end_time: "14 0"

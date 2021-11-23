@@ -9,6 +9,7 @@ gem 'rails'
 gem 'bcrypt',         '3.1.13'
 gem 'sass-rails', '6.0.0'
 gem 'turbolinks', '5.2.1'
+gem "omniauth-google-oauth2"
 gem 'webpacker',  '5.4.0'
 gem 'json', '2.5.1'
 gem 'activerecord-import'
