@@ -11,7 +11,6 @@ Rails.application.routes.draw do
       get  '/signup',  to: 'participants#new'
       get    '/login',   to: 'participant_sessions#new'
       post   '/login',   to: 'participant_sessions#create'
-      delete '/logout',  to: 'participant_sessions#destroy'
       post 'add', to: 'participants#add_to_schedule'
     end
   end
@@ -20,7 +19,6 @@ Rails.application.routes.draw do
       get  '/signup',  to: 'organizers#new'
       get    '/login',   to: 'organizer_sessions#new'
       post   '/login',   to: 'organizer_sessions#create'
-      delete '/logout',  to: 'organizer_sessions#destroy'
     end
   end
 
@@ -34,4 +32,5 @@ Rails.application.routes.draw do
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'index#index'
+  get '/logout', to: 'application#destroy_session'
 end

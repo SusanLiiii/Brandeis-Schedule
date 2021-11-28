@@ -1,5 +1,5 @@
 class ParticipantsController < ApplicationController
-  before_action :set_participant, only: [:show, :edit, :update, :destroy]
+  before_action :set_participant, only: [:show, :edit, :update]
 
   # GET /participants
   # GET /participants.json
@@ -50,16 +50,6 @@ class ParticipantsController < ApplicationController
         format.html { render :edit }
         format.json { render json: @participant.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /participants/1
-  # DELETE /participants/1.json
-  def destroy
-    @participant.destroy
-    respond_to do |format|
-      format.html { redirect_to participants_url, notice: 'Participant was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 

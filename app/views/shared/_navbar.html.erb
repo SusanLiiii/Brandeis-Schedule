@@ -27,9 +27,9 @@
                 <%= link_to "Profile", current_user, class:"dropdown-item" %>
                 <%= link_to "Settings", '#', class:"dropdown-item" %>
                 <% if is_organizer? %>
-                    <%= link_to "Log out", logout_organizers_path, method: :delete, class:"dropdown-item" %>
+                    <%= link_to "Log out", logout_path, method: :delete, class:"dropdown-item" %>
                   <% else %>
-                    <%= link_to "Log out", logout_participants_path, method: :delete, class:"dropdown-item" %>
+                    <%= link_to "Log out", logout_path, method: :delete, class:"dropdown-item" %>
                   <% end %>
                 <li class="divider"></li>
               </div>
