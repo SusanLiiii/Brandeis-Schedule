@@ -6,13 +6,16 @@ class RoomsController < ApplicationController
   end
 
   def do_search
-    @rooms = Room.where("name LIKE ?", "%#{params[:name]}%")
+    @rooms = Room.all
+    if params[:location] != 'Select a location'
+      @rooms = @rooms.where(location: params[:location])
+    end
+    @rooms = @rooms.where("name LIKE ?", "%#{params[:name]}%")
     render "search"
   end
 
   def search_available
     @rooms = Room.all
-        puts "hello"
   end
 
   def do_search_available

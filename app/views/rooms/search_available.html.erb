@@ -18,5 +18,5 @@
     </div>
   </div>
 <% end %>
-<%= button_to "Back", rooms_path, method: :get%>
+<%= button_to "Back", search_rooms_path, method: :get%>
 <%= render "index",params:{event_date: params[:event_date], time: params[:time]} %>

@@ -22,19 +22,24 @@ module ApplicationHelper
   end
 
   def get_room_list
-    entry = [['Select a room', '']]
+    entry = []
     Room.all.each do |room|
       entry << ["#{room.location}: #{room.name}", room.id]
     end
+    return [['Select a room', '']] + entry.sort_by(&:first)
+  end
+
+  def get_location_list
+    entry = ['Select a location'] + Room.all.pluck(:location).uniq.sort
     return entry
   end
 
   def get_organizer_list
-    entry = [['Select an organizer', '']]
+    entry = []
     Organizer.all.each do |org|
       entry << [org.name, org.id]
     end
-    return entry
+    return [['Select an organizer', '']] + entry.sort_by(&:first)
   end
 
   def get_time_list

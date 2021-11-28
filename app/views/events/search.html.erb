@@ -1,3 +1,4 @@
+<% provide(:title, "Events") %>
 <html>
   <div class="container mt-4">
       <div class="row d-flex justify-content-center">
@@ -35,7 +36,11 @@
               </div>
           </div>
           <% end %>
-          <%= button_to "Back", events_path, method: :get%>
+          <% if logged_in? %>
+            <% if is_organizer? %>
+              <%= button_to "New Event", search_available_rooms_path, method: :get %>
+            <% end %>
+          <% end %>
           <%= render "index" %>
       </div>
   </div>

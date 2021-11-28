@@ -2,6 +2,9 @@
   <div class="row tbalign-items-centerp-2">
     <div class="col-sm-8">
     <div class="row g-1 mt-1">
+    `<div class="col">
+        <%= select_tag(:location, options_for_select(get_location_list), class: "form-control-lg") %>
+      </div>
       <div class="col">
         <%= text_field_tag(:name, "", class: "form-control-sm", placeholder: "search for") %>
       </div>
@@ -16,5 +19,9 @@
     </div>
   </div>
 <% end %>
-<%= button_to "Back", rooms_path, method: :get%>
+<% if logged_in? %>
+  <% if is_organizer? %>
+    <%= button_to "Find a room", search_available_rooms_path, method: :get %>
+  <% end %>
+<% end %>
 <%= render "index" %>
