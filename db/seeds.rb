@@ -22,10 +22,10 @@ require 'open-uri'
 
 time_field = ["start_time", "end_time"]
 (0..22).each do |time|
-    time_info = [{"start_time" => "#{time} 0", "end_time" => "#{time} 30"}, {"start_time" => "#{time} 30", "end_time" => "#{time+1} 0"}]
+    time_info = [{"start_time" => "#{time}:00", "end_time" => "#{time}:30"}, {"start_time" => "#{time}:30", "end_time" => "#{time+1}:00"}]
   TimeBlock.import time_field, time_info
 end
-time_info = [{"start_time" => "23 0", "end_time" => "23 30"}, {"start_time" => "23 30", "end_time" => "0 0"}]
+time_info = [{"start_time" => "23:00", "end_time" => "23:30"}, {"start_time" => "23:30", "end_time" => "0:00"}]
 TimeBlock.import time_field, time_info
 
 rooms = []

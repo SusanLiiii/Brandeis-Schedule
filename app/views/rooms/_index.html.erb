@@ -20,7 +20,10 @@
                     <%# <div class="badge"> <span>Design</span> </div> %>
                 </div>
                 <div class="mt-5">
-                    <h3 class="heading"><%= link_to room.name, room, class:"link" %></h3>
+                    <h3 class="heading">
+                        <% name = room.name.html_safe.to_s%>
+                        <%= link_to name, room, class:"link" %>
+                    </h3>
                     <p class="text-muted">
                     <% if logged_in? && is_organizer?%>
                         <% if params[:event_date].nil? %>

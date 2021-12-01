@@ -1,4 +1,5 @@
 module ApplicationHelper
+  include TimeBlocksHelper
 
   def is_organizer?
     session[:isOrganizer]
@@ -20,41 +21,4 @@ module ApplicationHelper
     reset_session
     @current_user = nil
   end
-
-  def get_room_list
-    entry = []
-    Room.all.each do |room|
-      entry << ["#{room.location}: #{room.name}", room.id]
-    end
-    return [['Select a room', '']] + entry.sort_by(&:first)
-  end
-
-  def get_location_list
-    entry = ['Select a location'] + Room.all.pluck(:location).uniq.sort
-    return entry
-  end
-
-  def get_organizer_list
-    entry = []
-    Organizer.all.each do |org|
-      entry << [org.name, org.id]
-    end
-    return [['Select an organizer', '']] + entry.sort_by(&:first)
-  end
-
-  def get_time_list
-    entry = [['Select a time', '']]
-    TimeBlock.all.each do |time|
-      entry << [time.start_time, time.id]
-    end
-    return entry
-  end
-
-  def get_date_time(event, time)
-    date =  Date.new(event["date(1i)"].to_i, event["date(2i)"].to_i, event["date(3i)"].to_i)
-    start_time = Time.new(date.year, date.month, date.day, time["start_time(4i)"].to_i, time["start_time(5i)"].to_i)
-    end_time = Time.new(date.year, date.month, date.day, time["end_time(4i)"].to_i, time["end_time(5i)"].to_i)
-    return date, start_time, end_time
-  end
-
 end

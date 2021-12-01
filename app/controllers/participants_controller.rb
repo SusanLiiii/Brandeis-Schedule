@@ -1,5 +1,5 @@
 class ParticipantsController < ApplicationController
-  before_action :set_participant, only: [:show, :edit, :update]
+  before_action :set_participant, only: [:show, :edit, :update, :destroy]
 
   # GET /participants
   # GET /participants.json
@@ -53,11 +53,30 @@ class ParticipantsController < ApplicationController
     end
   end
 
+  # DELETE /participants/1
+  # DELETE /participants/1.json
+  def destroy
+    @participant.destroy
+    respond_to do |format|
+      format.html { redirect_to participants_url, notice: 'Participant was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
   def add_to_schedule
     @participant = Participant.find(session[:participant_id])
     if !@participant.events.include?(Event.find(params[:event_id]))
       ParticipantSchedule.create(participant_id: @participant.id, event_id: params[:event_id])
       flash[:success] = "You have successfully enrolled in this course."
+      redirect_to @participant
+    end
+  end
+
+  def remove_from_schedule
+    @participant = Participant.find(session[:participant_id])
+    if @participant.events.include?(Event.find(params[:event_id]))
+      ParticipantSchedule.where(participant_id: @participant.id, event_id: params[:event_id]).destroy_all
+      flash[:success] = "You have successfully unenrolled from this course."
       redirect_to @participant
     end
   end

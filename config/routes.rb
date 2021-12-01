@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       get    '/login',   to: 'participant_sessions#new'
       post   '/login',   to: 'participant_sessions#create'
       post 'add', to: 'participants#add_to_schedule'
+      post 'remove', to: 'participants#remove_from_schedule'
     end
   end
   resources :organizers do

@@ -8,7 +8,7 @@
 
 <p>
   <strong>Description:</strong>
-  <%= @event.description %>
+  <%= @event.description.html_safe %>
 </p>
 
 <p>
@@ -34,6 +34,7 @@
       <%= button_to "Add to My Schedule", add_participants_path, method: :post, params: { event_id: @event.id }, class:"btn float-right login_btn"%>
     <% else %>
       <div> Attending</div>
+      <%= button_to "Remove from My Schedule", remove_participants_path, method: :post, params: { event_id: @event.id }, class:"btn float-right login_btn"%>
     <% end %>
   <% end %>
 <% end %>
