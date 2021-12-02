@@ -20,18 +20,17 @@ The heroku link for the web is https://peaceful-beyond-97112.herokuapp.com/
 
 - Event urls:
 
-* List out all the events: /events
 * List out event information: /events/1
-* Search for Event urls: /events/search?
+* Event list page with search bar urls: /events/search?
 * Display All events card for search result: /events/do_search?name=Group&room=2&org=3&commit=Search
 * Schedule a new event through searching for available rooms: /events/new?end_time=2021-11-10+08%3A00%3A00+-0500&event_date=2021-11-10&room_id=1&start_time=2021-11-10+08%3A00%3A00+-0500
 * Schedule a new event through directly select a room: /events/new?room_id=1
+* Edit an event: /events/1/edit
 
 - Room urls:
 
-* List out all the rooms: /rooms
 * List out room information: /rooms/1
-* Search for Room urls: /rooms/search?
+* Room list page with search bar urls: /rooms/search?
 * Display All room card for search result: /rooms/do_search?name=Skyline&commit=Search
 * Search for available rooms based on date and time: /rooms/search_available?
 * Display search result for available rooms: /rooms/do_search_available?event_date%5Bdate%281i%29%5D=2021&event_date%5Bdate%282i%29%5D=11&event_date%5Bdate%283i%29%5D=10&time%5Bstart_time%281i%29%5D=2021&time%5Bstart_time%282i%29%5D=11&time%5Bstart_time%283i%29%5D=10&time%5Bstart_time%284i%29%5D=08&time%5Bstart_time%285i%29%5D=00&time%5Bend_time%281i%29%5D=2021&time%5Bend_time%282i%29%5D=11&time%5Bend_time%283i%29%5D=10&time%5Bend_time%284i%29%5D=08&time%5Bend_time%285i%29%5D=00&commit=Find+Available+Room
@@ -41,32 +40,26 @@ The heroku link for the web is https://peaceful-beyond-97112.herokuapp.com/
 * Participant Login: /participants/login
 * Participant Signup: /participants/signup
 * Participant Information(Event Schedule): /participants/6
-* Edit Participant Information(emails, name, password): /participants/6/edit
-* Participant Logout: /participants/logout
+* Participant Logout: /logout
 
 - Organizer urls:
 
 * Organizer Login: /organizers/login
 * Organizer Signup: /organizers/signup
 * Organizer Information(Event Schedule): /organizers/6
-* Edit Organizer Information(emails, name, password): /organizers/6/edit
-* Organizer Logout: /organizers/logout
+* Organizer Logout: /logout
 
 ## Project Stages
 
 - (Done) Import all static information such as event and department from Brandeis website and Brandeis public calendar(https://www.brandeis.edu/events/), and create a "Hello World" UI that display all the data
 
-- (Done) Allow users to subscribe to events and classes and auto-generate a schedule based on their subscription
+- (Done) Allow users to subscribe or unscubscribe to events
 
-- (Done) Allow organizers to create events from available rooms and time slots
+- (Done) Allow organizers to create, edit or cancel events from available rooms and time slots
 
-- (Current) Refine the UI and refractor the code to make it look cleaner. Write complete test for the app
+- (Done) Refine the UI and refractor the code to make it look cleaner. Write complete test for the app
 
-- Add class schedule to the datebase
-
-- AI Algorithm to find participant potential interested events
-
-- Friend-feature and publicity
+- (On going) Allow participants to have inbox to receive information about their subscribed events
 
 ## Model information
 
