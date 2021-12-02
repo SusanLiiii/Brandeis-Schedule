@@ -39,9 +39,8 @@ class EventsController < ApplicationController
       if @end_time > @start_time && Calendar.new(EventSchedule.all).check_room_availability(@room, @event_date, @start_time, @end_time)
         @event = Event.new(name: @name, description: @description, room_id: @room, organizer_id:@organizer)
         if @event.save
-          (Calendar.new(EventSchedule.all).find_start_time(@start_time).id...Calendar.new(EventSchedule.all).find_end_time(@end_time).id+1).each do |time|
+          (Calendar.new(EventSchedule.all).find_start_time(@start_time).id..Calendar.new(EventSchedule.all).find_end_time(@end_time).id).each do |time|
             @event_schedule << EventSchedule.new(event_id: @event.id, date:@event_date, room_id: @room, time_block_id: time)
-            puts @event_schedule
           end
           @success = true
           @event_schedule.each do |event_schedule|
@@ -58,6 +57,7 @@ class EventsController < ApplicationController
         @event_schedule.each do |event_schedule|
           event_schedule.destroy
         end
+        flash[:notice] = "The event was not created. Please try again."
         redirect_to new_event_path(room_id: @room, event_date: @event_date, start_time: @start_time, end_time: @end_time)
       end
   end
@@ -65,25 +65,51 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
-    respond_to do |format|
-      if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
-        format.json { render :show, status: :ok, location: @event }
+    @name = params[:event][:name]
+    @description = params[:event][:description]
+    @room = params[:event][:room]
+    @organizer = session[:organizer_id]
+    @event_date = params[:event][:date].to_date
+    @start_time = params[:event][:start_time].to_time
+    @end_time = params[:event][:end_time].to_time
+    @event_schedule = []
+    start_time_id = @event.event_schedules.first.time_block_id
+    end_time_id = @event.event_schedules.last.time_block_id
+    date = @event.event_schedules.first.date
+      if @end_time > @start_time && Calendar.new(EventSchedule.where.not(event_id: @event.id)).check_room_availability(@room, @event_date, @start_time, @end_time)
+        if @event.update(name: @name, description: @description, room_id: @room, organizer_id:@organizer)
+          EventSchedule.where(event_id: @event.id).destroy_all
+          (Calendar.new(EventSchedule.all).find_start_time(@start_time).id..Calendar.new(EventSchedule.all).find_end_time(@end_time).id).each do |time|
+            @event_schedule << EventSchedule.new(event_id: @event.id, date:@event_date, room_id: @room, time_block_id: time)
+          end
+          @success = true
+          @event_schedule.each do |event_schedule|
+            @success = @success && event_schedule.save
+          end
+          if @success
+            redirect_to @event
+          else
+            (start_time_id..end_time_id).each do |time|
+              @event_schedule << EventSchedule.create(event_id: @event.id, date: date, room_id: @event.room.id, time_block_id: time)
+            end
+          end
+        end
       else
-        format.html { render :edit }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+        @event_schedule.each do |event_schedule|
+          event_schedule.destroy
+        end
+        redirect_to edit_event_path(room_id: @event.room.id, event_date: @event.event_schedules.first.date, start_time: @event.time_blocks.first.start_time, end_time: @event.time_blocks.last.end_time)
+        flash[:notice] = "The event was not updated. Please try again."
       end
-    end
   end
 
   # DELETE /events/1
   # DELETE /events/1.json
-  def destroy
-    @event.destroy
-    respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+  def cancel
+    @event = Event.find(params[:event_id])
+    @event.update(isCanceled: true)
+    EventSchedule.where(event_id: @event.id).destroy_all
+    redirect_to @event
   end
 
   def search
@@ -92,14 +118,17 @@ class EventsController < ApplicationController
 
   def do_search
     @events = Event.all
-      if !params[:room].blank?
-        @events = @events.where(room_id: params[:room])
-      end
-      if !params[:org].blank?
-        @events = @events.where(organizer_id: params[:org])
-      end
-      @events = @events.where("name LIKE ?", "%#{params[:name]}%")
-      render "search"
+    if !params[:event_date]["date(1i)"].empty? && !params[:event_date]["date(2i)"].empty? && !params[:event_date]["date(3i)"].empty?
+      @events = @events.where(id: EventSchedule.where(date: get_date(params[:event_date])).map(&:event).pluck(:id).uniq!)
+    end
+    if !params[:room].blank?
+      @events = @events.where(room_id: params[:room])
+    end
+    if !params[:org].blank?
+      @events = @events.where(organizer_id: params[:org])
+    end
+    @events = @events.where("name LIKE ?", "%#{params[:name]}%")
+    render "search"
   end
 
   private

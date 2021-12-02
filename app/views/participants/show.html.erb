@@ -41,6 +41,9 @@
                                           <td>
                                             <%= event.time_blocks.last.end_time %>
                                           </td>
+                                          <td>
+                                            <%= button_to "Remove from My Schedule", remove_participants_path, method: :post, params: { event_id: event.id }%>
+                                          </td>
                                         </tr>
                                       <% end %>
                                     </tbody>
@@ -77,13 +80,6 @@
                 </div>
             </div>
           </section>
-
-<p>
-  <strong>Name:</strong>
-  <%= @participant.name %>
-  <%= @participant.email %>
-</p>
-<%= link_to 'Edit', edit_participant_path(@participant) %> |
 <%= link_to 'Back', root_path %>
 
 </div>

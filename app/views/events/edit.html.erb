@@ -1,6 +1,5 @@
 <h1>Editing Event</h1>
 
-<%= render 'form', event: @event %>
+<%= render 'form', event: @event, room_id: @event.room.id, event_date: @event.event_schedules.first.date, start_time: @event.time_blocks.first.start_time, end_time: @event.time_blocks.last.end_time%>
 
-<%= link_to 'Show', @event %> |
-<%= link_to 'Back', events_path %>
+<%= link_to 'Cancel', @event %>

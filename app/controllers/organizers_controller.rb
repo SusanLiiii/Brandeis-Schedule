@@ -17,49 +17,23 @@ class OrganizersController < ApplicationController
     @organizer = Organizer.new
   end
 
-  # GET /organizers/1/edit
-  def edit
-  end
-
   # POST /organizers
   # POST /organizers.json
   def create
     @organizer = Organizer.new(organizer_params)
 
     respond_to do |format|
-      if @organizer.save
-        reset_session
-        organizer_log_in @organizer
-        format.html { redirect_to @organizer, notice: 'Organizer was successfully created.' }
-        format.json { render :show, status: :created, location: @organizer }
+      if !Organizer.exists?(:name => @organizer.name)
+        if @organizer.save
+          reset_session
+          organizer_log_in @organizer
+          format.html { redirect_to @organizer, notice: 'Organizer was successfully created.' }
+          format.json { render :show, status: :created, location: @organizer }
+        end
       else
         format.html { render :new }
         format.json { render json: @organizer.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # PATCH/PUT /organizers/1
-  # PATCH/PUT /organizers/1.json
-  def update
-    respond_to do |format|
-      if @organizer.update(organizer_params)
-        format.html { redirect_to @organizer, notice: 'Organizer was successfully updated.' }
-        format.json { render :show, status: :ok, location: @organizer }
-      else
-        format.html { render :edit }
-        format.json { render json: @organizer.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /organizers/1
-  # DELETE /organizers/1.json
-  def destroy
-    @organizer.destroy
-    respond_to do |format|
-      format.html { redirect_to organizers_url, notice: 'Organizer was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 

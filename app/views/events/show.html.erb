@@ -21,15 +21,23 @@
     <strong>Location:</strong>
     <%= link_to @event.room.name, @event.room %>
   </p>
-
+  <% if @event.isCanceled%>
+    <h3>
+      This event has been canceled.
+    </h3>
+  <% else %>
   <p>
     <strong>Time:</strong>
     <%= @event.event_schedules.first.date %>
     <%= @event.time_blocks.first.start_time %> - <%= @event.time_blocks.last.end_time %>
   </p>
-
   <% if logged_in?%>
     <% if is_organizer? %>
+      <% if !current_user.events.where(id:@event.id).empty? %>
+        <div> My Event</div>
+        <%= link_to 'Edit', edit_event_path(@event) %>
+        <%= button_to "Cancel", cancel_events_path, method: :post, params: { event_id: @event.id }, class:"btn float-right login_btn"%>
+      <% end %>
     <% else %>
       <% if current_user.events.where(id:@event.id).empty? %>
         <%= button_to "Add to My Schedule", add_participants_path, method: :post, params: { event_id: @event.id }, class:"btn float-right login_btn"%>
@@ -39,9 +47,10 @@
       <% end %>
     <% end %>
   <% end %>
+  <% end %>
   </div>
 
-  <%= link_to 'All Events', events_path %>|
+  <%= link_to 'All Events', search_events_path %>|
   <%= link_to 'Room', @event.room %>
 
   <p>

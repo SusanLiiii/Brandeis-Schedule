@@ -7,18 +7,14 @@
     <tr>
       <th>Name</th>
       <th>Email</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @organizers.each do |organizer| %>
       <tr>
-        <td><%= organizer.name %></td>
+        <td><%= link_to organizer.name, organizer%></td>
         <td><%= organizer.email %></td>
-        <td><%= link_to 'Show', organizer %></td>
-        <td><%= link_to 'Edit', edit_organizer_path(organizer) %></td>
-        <td><%= link_to 'Destroy', organizer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +22,4 @@
 
 <br>
 
-<%= link_to 'New Organizer', new_organizer_path %>
+<%= link_to 'Sign in as Organizer', new_organizer_path %>

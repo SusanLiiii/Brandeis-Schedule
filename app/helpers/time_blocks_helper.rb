@@ -7,8 +7,13 @@ module TimeBlocksHelper
     return entry
   end
 
-  def get_date_time(event, time)
+  def get_date(event)
     date =  Date.new(event["date(1i)"].to_i, event["date(2i)"].to_i, event["date(3i)"].to_i)
+    return date
+  end
+
+  def get_date_time(event, time)
+    date =  get_date(event)
     start_time = Time.new(date.year, date.month, date.day, time["start_time(4i)"].to_i, time["start_time(5i)"].to_i)
     end_time = Time.new(date.year, date.month, date.day, time["end_time(4i)"].to_i, time["end_time(5i)"].to_i)
     return date, start_time, end_time

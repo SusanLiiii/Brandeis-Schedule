@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_09_024427) do
+ActiveRecord::Schema.define(version: 2021_12_02_015627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2021_11_09_024427) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "capacity"
+    t.boolean "isCanceled", default: false
     t.index ["organizer_id"], name: "index_events_on_organizer_id"
     t.index ["room_id"], name: "index_events_on_room_id"
   end

@@ -24,7 +24,9 @@ class Calendar
 
     if time_block_end.nil?
       min = end_time.min
-      if min < 30
+      if min == 0
+        time_block_end = TimeBlock.find_by(end_time: "#{end_time.hour}:00")
+      elsif min <= 30
         time_block_end = TimeBlock.find_by(end_time: "#{end_time.hour}:30")
       else
         hour = end_time.hour + 1
@@ -58,6 +60,9 @@ class Calendar
   end
 
   def check_room_availability(room_id, date, start_time, end_time)
+    if Room.find(room_id).location == "Online" || Room.find(room_id).location == "Various Locations"
+      return true
+    end
     start_time_id = find_start_time(start_time).id
     end_time_id = find_end_time(end_time).id
     if start_time_id > end_time_id

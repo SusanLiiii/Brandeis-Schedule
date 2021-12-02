@@ -15,6 +15,9 @@
                         <%= select_tag(:org,
                         options_for_select(get_organizer_list), class: "form-control-lg") %>
                       </div>
+                      <div class="col pt-1">
+                        <%= date_select(:event_date, :date, :start_year => Date.current.year, :end_year => Date.current.year + 10, include_blank: true) %>
+                      </div>
                       <%# <div class="col-md-2">
                           <div class="dropdown"> <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false"> Any Status </button>
                               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">

@@ -3,9 +3,9 @@ Rails.application.routes.draw do
     collection do
       get 'search'
       get 'do_search'
+      post 'cancel', to: 'events#cancel'
     end
   end
-  resources :time_blocks
   resources :participants do
     collection do
       get  '/signup',  to: 'participants#new'
