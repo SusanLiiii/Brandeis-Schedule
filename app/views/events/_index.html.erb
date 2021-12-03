@@ -7,7 +7,7 @@
         <!-- For each post in the array, give it a class of "col-4" which is 3 per row-->
         <% event_array.each do |event| %>
         <!-- If posts.count = 4, last array will be [post4, nil, nil] so if it's nil, don't do anything or you'll get an error-->
-        <%  unless event.nil?||event.isCanceled %>
+        <%  unless event.nil? %>
         <div class="col-4">
             <div class="card p-3 mb-2">
                 <div class="d-flex justify-content-between">
@@ -39,14 +39,13 @@
                     <% if is_organizer? %>
                         <% if !current_user.events.where(id:event.id).empty? %>
                             <div> My Event</div>
-                            <div class="mt-3"><%= button_to "Cancel", cancel_events_path, method: :post, params: { event_id: event.id }, class:"btn float-right login_btn"%></div>
                         <% end %>
                     <% else %>
                         <% if current_user.events.where(id:event.id).empty? %>
                             <div class="mt-3"><%= button_to "Add to My Schedule", add_participants_path, method: :post, params: { event_id: event.id }, class:"btn float-right login_btn"%></div>
                         <% else %>
                             <div class="mt-3" id="attendence"> Attending</div>
-                            <div class="mt-3" id="attendence"> <%= button_to "Remove from My Schedule", remove_participants_path, method: :post, params: { event_id: event.id }, class:"btn float-right login_btn"%></div>
+                            <%= button_to "Remove from My Schedule", remove_participants_path, method: :post, params: { event_id: event.id }, class:"btn float-right login_btn"%>
                         <% end %>
                     <% end %>
                 <% end %>

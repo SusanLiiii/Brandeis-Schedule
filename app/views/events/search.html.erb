@@ -9,15 +9,16 @@
                   <div class="row g-1 mt-1">
                       <div class="col pt-2">
                         <%= select_tag(:room,
-                        options_for_select(get_room_list), class: "form-control-lg") %>
+                        options_for_select(get_room_list), class: "form-control-lg", :prompt => "Room") %>
                       </div>
                       <div class="col pt-2">
                         <%= select_tag(:org,
-                        options_for_select(get_organizer_list), class: "form-control-lg") %>
+                        options_for_select(get_organizer_list), class: "form-control-lg", :prompt => "Organizer") %>
                       </div>
-                      <div class="col pt-1">
-                        <%= date_select(:event_date, :date, :start_year => Date.current.year, :end_year => Date.current.year + 10, include_blank: true) %>
-                      </div>
+                      <%# <input type="date" id="start" name="trip-start"
+                              value="2021-07-22"
+                              min="2020-01-01" max="2022-12-31"> %>
+                      <span class="datetime"> <%= date_select( :event_date, :date, :start_year => Date.current.year, :end_year => Date.current.year + 1, include_blank: true )%></span>
                       <%# <div class="col-md-2">
                           <div class="dropdown"> <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false"> Any Status </button>
                               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -80,6 +81,9 @@
         box-shadow: none;
         border: 1px solid #00838f
     }
+    
+    
+
     
   </style>
 </html>

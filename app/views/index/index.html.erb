@@ -5,6 +5,8 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+      <p id="notice"><%= notice %></p>  
+
 
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
       <h1 class="display-4">Brandeis Schedule</h1>
@@ -17,26 +19,39 @@
         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
       </ol>
+      
       <div class="carousel-inner">
+      
         <div class="carousel-item active">
-          <a href="/events/1"><img class="d-block w-100" src="https://www.brandeis.edu/student-activities/images/shapiro-campus-center.jpg" alt="First slide"></a>
+          <!-- For each post in the array, give it a class of "col-4" which is 3 per row-->
+          <!-- If posts.count = 4, last array will be [post4, nil, nil] so if it's nil, don't do anything or you'll get an error-->
+          <%= link_to Calendar.new(EventSchedule.all).get_today.first do %>
+            <img class="d-block w-100" src="/assets/shapiro.jpg" alt="First slide">        
+          <% end %>
           <div class="carousel-caption d-none d-md-block">
-            <h1 id="caption">First slide label</h1>
-            <p id="caption">Some representative placeholder content for the first slide.</p>
+            <h1 id="caption"><%= Calendar.new(EventSchedule.all).get_today.first.name%></h1>
+            <p id="caption"><%= truncate Calendar.new(EventSchedule.all).get_today.first.description.html_safe, length: 100%></p>
+          </div>
+
+
+        </div>
+
+        <div class="carousel-item">
+          <%= link_to Calendar.new(EventSchedule.all).get_today.second do %>
+            <img class="d-block w-100" src="/assets/usdan.jpg" alt="Second slide">        
+          <% end %>
+          <div class="carousel-caption d-none d-md-block">
+            <h1 id="caption"><%= Calendar.new(EventSchedule.all).get_today.second.name%></h1>
+            <p id="caption"><%= truncate Calendar.new(EventSchedule.all).get_today.second.description.html_safe, length: 100%></p>
           </div>
         </div>
         <div class="carousel-item">
-          <a href="/events/2"><img class="d-block w-100" src="https://www.brandeis.edu/student-activities/images/usdan.jpg" alt="Second slide"></a>
+          <%= link_to Calendar.new(EventSchedule.all).get_today.third do %>
+            <img class="d-block w-100" src="/assets/upusdan.jpg" alt="Third slide">        
+          <% end %>
           <div class="carousel-caption d-none d-md-block">
-            <h1 id="caption">Second slide label</h1>
-            <p id="caption">Some representative placeholder content for the first slide.</p>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <a href="/events/3"><img class="d-block w-100" src="https://images.squarespace-cdn.com/content/v1/5878eed0414fb53c291528ff/1484757372352-MO18HNE017HVLZMSUXO3/Usdan+Websized-29.jpg?format=2500w" alt="Third slide"></a>
-          <div class="carousel-caption d-none d-md-block">
-            <h1 id="caption">Third slide label</h1>
-            <p id="caption">Some representative placeholder content for the first slide.</p>
+            <h1 id="caption"><%= Calendar.new(EventSchedule.all).get_today.third.name%></h1>
+            <p id="caption"><%= truncate Calendar.new(EventSchedule.all).get_today.third.description.html_safe, length: 100%></p>
           </div>
         </div>
       </div>
@@ -60,7 +75,7 @@
               <h4 class="my-0 font-weight-normal">My Upcoming Event</h4>
             </div>
             <div class="card-body">
-              <% Calendar.new(EventSchedule.where(event_id: current_user.events.ids)).get_next_event.each do |event| %>
+              <% Calendar.new(EventSchedule.all).get_current_event.each do |event| %>
                 <% event = event.event%>
                 <h1 class="card-title pricing-card-title"><%= event.name %></h1>
                 <ul class="list-unstyled mt-3 mb-4">
@@ -213,6 +228,16 @@
     }
     .carousel .carousel-item {
       height: 500px;
+    }
+
+    .carousel p{
+      font-size: 25px;
+      line-height: 30px;
+    }
+
+    .carousel h1{
+      font-size: 60px;
+      line-height: 60px;
     }
 
     .carousel-item img {
