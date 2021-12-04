@@ -28,11 +28,11 @@
                     <% if logged_in? && is_organizer?%>
                         <% if params[:event_date].nil? %>
                             <div class="mt-3">
-                                <%= button_to "Reserve the room", new_event_path(room_id: room.id), method: :get, class:"btn float-right login_btn" %>
+                                <%= button_to "Reserve", new_event_path(room_id: room.id), method: :get, class:"btn float-right login_btn" %>
                             </div>
                         <% else %>
                             <div class="mt-3">
-                                <%= button_to "Reserve the room", new_event_path(event_date: get_date_time(params[:event_date], params[:time])[0], start_time: get_date_time(params[:event_date], params[:time])[1], end_time: get_date_time(params[:event_date], params[:time])[2], room_id: room.id),method: :get, class:"btn float-right login_btn" %>
+                                <%= button_to "Reserve", new_event_path(event_date: get_date_time(params[:event_date], params[:time])[0], start_time: get_date_time(params[:event_date], params[:time])[1], end_time: get_date_time(params[:event_date], params[:time])[2], room_id: room.id),method: :get, class:"btn float-right login_btn" %>
                             </div>
                         <% end %>
                     <% end %>
