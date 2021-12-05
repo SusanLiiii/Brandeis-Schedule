@@ -1,0 +1,29 @@
+.form-control-lg{
+    width: 100%;
+    background-color: white;
+    padding:10px;
+    border:0;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    height: 20px;
+  } 
+  
+  .bi bi-search{
+    height: 50px
+  }
+  
+
+.btn-secondary,
+.btn-secondary:focus,
+.btn-secondary:active {
+  color: #fff;
+  background-color: #003478 !important;
+  border-color: #00838f !important;
+  box-shadow: none;
+  width: 100%
+}
+
+
+.form-control:focus {
+  box-shadow: none;
+  border: 1px solid #00838f
+}

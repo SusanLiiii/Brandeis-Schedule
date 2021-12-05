@@ -1,3 +1,288 @@
 // Place all the styles related to the index controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.link_to{
+          color: black;
+          text-decoration:none; 
+      }
+      .link_to:hover{
+          background-color:transparent;
+          color:#003478;
+      }
+    body {
+      background-color: #f5f4f0;
+      font-family: Georgia, serif;
+    }
+    h1   {
+      color: 00295E;
+      font-family: Georgia, serif
+    }
+    p    {
+      color: 264653;
+      font-family: Georgia, serif
+    }
+    .carousel .carousel-item {
+      height: 500px;
+    }
+
+    .carousel p{
+      font-size: 25px;
+      line-height: 30px;
+    }
+
+    .carousel h1{
+      font-size: 60px;
+      line-height: 60px;
+    }
+
+    .carousel-item img {
+        position: absolute;
+        object-fit:cover;
+        top: 0;
+        left: 0;
+        min-height: 500px;
+        filter: brightness(80%);
+    }
+    .card {
+          border: none;
+          border-radius: 10px;
+      }
+
+    .card-header{
+      border: none;
+          border-radius: 10px
+    }
+
+  #minicard{
+    border-radius: 0px;
+    border: none;
+    height: 200px;
+
+  }  
+  
+  #carouselExampleIndicators {
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+  }
+
+  .login_btn{
+  color: white;
+  background-color: #003478;
+  }
+
+  .login_btn:hover{
+  color: black;
+  background-color: white;
+  }
+
+  #caption{
+    color:white;
+  }
+
+  .carousel-control-prev:hover{
+    background-color:transparent;
+  }
+
+  .carousel-control-next:hover{
+    background-color:transparent;
+  }
+
+  .module {
+    padding-top: 5rem;
+    padding-bottom:5rem
+}
+
+.module > :first-child {
+    margin-top:0
+}
+
+.module > :last-child {
+    margin-bottom:0
+}
+
+.module.triangle-tab {
+    padding-top:6.25rem
+}
+
+.module--tight {
+    padding-top: 2.5rem;
+    padding-bottom:2.5rem
+}
+
+@media (min-width: 64.0625em) {
+    .module--tight {
+        padding-top: 5rem;
+        padding-bottom:5rem
+    }
+}
+
+.module--tight.triangle-tab {
+    padding-top:3.75rem
+}
+
+@media (min-width: 64.0625em) {
+    .module--tight.triangle-tab {
+        padding-top:6.25rem
+    }
+}
+
+.module--tight-alt {
+    padding-top: 2.5rem;
+    padding-bottom:2.5rem
+}
+
+@media (min-width: 64.0625em) {
+    .module--tight-alt {
+        padding-top: 3.25rem;
+        padding-bottom:3.25rem
+    }
+}
+
+.module--beige {
+    background:#f5f4f0
+}
+
+.module--gray-light {
+    background:#f5f5f5
+}
+
+.module--gray-dark {
+    background: #58595b;
+    color:#fff
+}
+
+.module--gray-dark .module__title {
+    color:#fff
+}
+
+.module--blue {
+    background: #003478;
+    color:#fff
+}
+
+.module--blue .module__title {
+    color:#fff
+}
+
+.module--shadow {
+    box-shadow: 0 0 .375rem rgba(0, 0, 0, .125);
+    z-index:1
+}
+
+.module--relative, .module--shadow {
+    position:relative
+}
+
+.module__container > :first-child {
+    margin-top:0
+}
+
+.module__container > :last-child {
+    margin-bottom:0
+}
+
+.module__container p.caption:nth-of-type(3), .module__container p:nth-of-type(3).p--sans-serif {
+    margin-top:-1rem
+}
+
+.module__container__link {
+    display:block
+}
+
+.module__container__link:focus {
+    outline: .125rem solid #4d90fe;
+    outline-offset:0
+}
+
+.module__title {
+    margin-bottom: 2.5rem;
+    text-align:center
+}
+
+.module__title--alt {
+    font-weight:500
+}
+
+.module__subtitle {
+    margin-top: -2rem;
+    margin-bottom: 2.5rem;
+    font-size: 1.25rem;
+    text-align:center
+}
+
+
+
+.card {
+    padding:1.25rem 1.25rem 2.5rem
+}
+
+.card, .card--alt {
+    background: #fff;
+    color: #58595b;
+    font-family:Whitney SSm A, Whitney SSm B, sans-serif
+}
+
+.card--alt {
+    padding:1.25rem 0
+}
+
+.card__header {
+    margin-bottom: 1.25rem;
+    padding-bottom: .25rem;
+    border-bottom:.25rem solid #58595b
+}
+
+.card__meta {
+    font-weight: 600;
+    font-size: .75rem;
+    text-transform:uppercase
+}
+
+.wrap {
+    max-width: 90rem;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 1rem;
+    padding-left:1rem
+}
+
+.wrap:after, .wrap:before {
+    display: table;
+    width: 0;
+    content: ""
+}
+
+.wrap:after {
+    clear:both
+}
+
+@media (min-width: 48em) {
+    .wrap {
+        padding-right: 2rem;
+        padding-left:2rem
+    }
+}
+
+@media (min-width: 64.0625em) {
+    .wrap {
+        padding-right: 3rem;
+        padding-left:3rem
+    }
+}
+
+.wrap--wide {
+    max-width:96rem
+}
+
+.wrap--narrow {
+    max-width:70rem
+}
+
+.wrap--slim {
+    max-width:58rem
+}
+
+.wrap--relative {
+    position:relative
+}

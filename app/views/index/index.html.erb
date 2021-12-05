@@ -66,7 +66,52 @@
     </div>
     </div>
 
+  
+    <div class="container">
+    <div class="module module--beige">
+    <div class="wrap">
+    <div class="module__container">
+    <h2 class="module__title module__title--alt">Upcoming Event</h2>
+      <div class="row">
+       <% if logged_in? %>
+        <% if is_organizer? %>
+        <% Calendar.new(EventSchedule.all).find_available_rooms(Date.today, Time.now, Time.now).first(4).each do |room| %>
+        <div class="col">
+          <div class="card" id="minicard" >
+            <div class="card-body">
+              <h5 class="card__header">
+                <div class="card__meta"><%= room.location %></div>
+              </h5>
+              <%= link_to room.name, room%>
+              <div class="card__meta"><% room.capacity %></div>
+            </div>
+          </div>
+        </div>
+        <%end%>
+        <%end%>
+        <% else %>
+          <% Calendar.new(EventSchedule.all).get_next_event.first(4).each do |event| %>
+          <% event = event.event%>
+        <div class="col">
+          <div class="card" id="minicard" >
+            <div class="card-body">
+              <h5 class="card__header">
+                <div class="card__meta"><%= event.event_schedules.first.date %></div>
+              </h5>
+              <div class="card__meta"><%= link_to event.name, event %></div>
+            </div>
+          </div>
+        </div>
+        <%end%>
+        <%end%>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
     
+
     <div class="container">
       <div class="card-deck mb-3 text-center">
         <% if logged_in? %>
@@ -77,10 +122,10 @@
             <div class="card-body">
               <% Calendar.new(EventSchedule.all).get_current_event.each do |event| %>
                 <% event = event.event%>
-                <h1 class="card-title pricing-card-title"><%= event.name %></h1>
+                <h3 class="card-title pricing-card-title"><%= link_to event.name, event %></h3>
                 <ul class="list-unstyled mt-3 mb-4">
                   <li>Organizer: <%= event.organizer.name %></li>
-                  <li>Location: <%= event.room.name %></li>
+                  <li>Location: <%= event.room.name.html_safe %></li>
                   <li>Capcity: 80/100</li>
                   <li>Time: <%= event.time_blocks.first.start_time %> - <%= event.time_blocks.last.end_time %></li>
                   <li>Learn More</li>
@@ -94,10 +139,10 @@
               <h4 class="my-0 font-weight-normal">Room Reservation</h4>
             </div>
             <div class="card-body">
-              <% Calendar.new(EventSchedule.all).find_available_rooms(Date.today, Time.now, Time.now).each do |room| %>
-                <h1 class="card-title pricing-card-title"><%= room.name %></h1>
+              <% Calendar.new(EventSchedule.all).find_available_rooms(Date.today, Time.now, Time.now).first(5).each do |room| %>
+                <h3 class="card-title pricing-card-title"><%= link_to room.name, room %></h3>
                 <ul class="list-unstyled mt-3 mb-4">
-                  <li>Location: <%= room.location %></li>
+                  <li>Location: <%= room.location.html_safe %></li>
                   <li>Capacity: <%= room.capacity %></li>
                   <li>Provided Supplies: charger, projector, white board</li>
                 </ul>
@@ -112,10 +157,10 @@
               <div class="card-body">
                 <% Calendar.new(EventSchedule.all).get_next_event.each do |event| %>
                   <% event = event.event%>
-                  <h1 class="card-title pricing-card-title"><%= event.name %></h1>
+                  <h3 class="card-title pricing-card-title"><%= link_to event.name, event %></h3>
                   <ul class="list-unstyled mt-3 mb-4">
                     <li>Organizer: <%= event.organizer.name %></li>
-                    <li>Location: <%= event.room.name %></li>
+                    <li>Location: <%= event.room.name.html_safe %></li>
                     <li>Capcity: 80/100</li>
                     <li>Time: <%= event.time_blocks.first.start_time %> - <%= event.time_blocks.last.end_time %></li>
                     <li>Learn More</li>
@@ -137,10 +182,10 @@
             <div class="card-body">
               <% Calendar.new(EventSchedule.all).get_current_event.each do |event| %>
                 <% event = event.event%>
-                <h1 class="card-title pricing-card-title"><%= event.name %></h1>
+                <h3 class="card-title pricing-card-title"><%= link_to event.name, event %></h3>
                 <ul class="list-unstyled mt-3 mb-4">
                   <li>Organizer: <%= event.organizer.name %></li>
-                  <li>Location: <%= event.room.name %></li>
+                  <li>Location: <%= event.room.name.html_safe %></li>
                   <li>Capcity: 80/100</li>
                   <li>Time: <%= event.time_blocks.first.start_time %> - <%= event.time_blocks.last.end_time %></li>
                   <li>Learn More</li>
@@ -153,12 +198,11 @@
               <h4 class="my-0 font-weight-normal">Room Reservation</h4>
             </div>
             <div class="card-body">
-              <% Calendar.new(EventSchedule.all).find_available_rooms(Date.today, Time.now, Time.now).each do |room| %>
-                <h1 class="card-title pricing-card-title"><%= room.name %></h1>
+              <% Calendar.new(EventSchedule.all).find_available_rooms(Date.today, Time.now, Time.now).first(5).each do |room| %>
+                <h3 class="card-title pricing-card-title"><%= link_to room.name, room %></h3>
                 <ul class="list-unstyled mt-3 mb-4">
-                  <li>Location: <%= room.location %></li>
+                  <li>Location: <%= room.location.html_safe %></li>
                   <li>Capacity: <%= room.capacity %></li>
-                  <li>Provided Supplies: charger, projector, white board</li>
                 </ul>
               <% end %>
             </div>
@@ -166,54 +210,22 @@
         <% end %>
       </div>
     </div>
-    <div id="accordion">
-  <div class="card">
-    <div class="card-header" id="headingOne">
-      <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Collapsible Group Item #1
-        </button>
-      </h5>
-    </div>
+  
+    
 
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingTwo">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Collapsible Group Item #2
-        </button>
-      </h5>
-    </div>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingThree">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Collapsible Group Item #3
-        </button>
-      </h5>
-    </div>
-    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-</div>
+    
     </body>
   <style>
     
+    a{
+          color: 00295E;
+          text-decoration:none; 
+      }
+      a:hover{
+          background-color:transparent;
+          color:#003478;
+          text-decoration:none;
+      }
     body {
       background-color: #f5f4f0;
       font-family: Georgia, serif;
@@ -236,7 +248,7 @@
     }
 
     .carousel h1{
-      font-size: 60px;
+      /* font-size: 60px; */
       line-height: 60px;
     }
 
@@ -246,16 +258,25 @@
         top: 0;
         left: 0;
         min-height: 500px;
+        filter: brightness(80%);
     }
     .card {
           border: none;
-          border-radius: 10px
+          border-radius: 10px;
       }
 
     .card-header{
       border: none;
           border-radius: 10px
     }
+
+  #minicard{
+    border-radius: 0px;
+    border: none;
+    height: 200px;
+
+  }  
+  
   #carouselExampleIndicators {
       padding: 0.5rem;
       margin-bottom: 1rem;
@@ -282,6 +303,206 @@
   .carousel-control-next:hover{
     background-color:transparent;
   }
+
+  .module {
+    padding-top: 5rem;
+    padding-bottom:5rem
+}
+
+.module > :first-child {
+    margin-top:0
+}
+
+.module > :last-child {
+    margin-bottom:0
+}
+
+.module.triangle-tab {
+    padding-top:6.25rem
+}
+
+.module--tight {
+    padding-top: 2.5rem;
+    padding-bottom:2.5rem
+}
+
+@media (min-width: 64.0625em) {
+    .module--tight {
+        padding-top: 5rem;
+        padding-bottom:5rem
+    }
+}
+
+.module--tight.triangle-tab {
+    padding-top:3.75rem
+}
+
+@media (min-width: 64.0625em) {
+    .module--tight.triangle-tab {
+        padding-top:6.25rem
+    }
+}
+
+.module--tight-alt {
+    padding-top: 2.5rem;
+    padding-bottom:2.5rem
+}
+
+@media (min-width: 64.0625em) {
+    .module--tight-alt {
+        padding-top: 3.25rem;
+        padding-bottom:3.25rem
+    }
+}
+
+.module--beige {
+    background:#f5f4f0
+}
+
+.module--gray-light {
+    background:#f5f5f5
+}
+
+.module--gray-dark {
+    background: #58595b;
+    color:#fff
+}
+
+.module--gray-dark .module__title {
+    color:#fff
+}
+
+.module--blue {
+    background: #003478;
+    color:#fff
+}
+
+.module--blue .module__title {
+    color:#fff
+}
+
+.module--shadow {
+    box-shadow: 0 0 .375rem rgba(0, 0, 0, .125);
+    z-index:1
+}
+
+.module--relative, .module--shadow {
+    position:relative
+}
+
+.module__container > :first-child {
+    margin-top:0
+}
+
+.module__container > :last-child {
+    margin-bottom:0
+}
+
+.module__container p.caption:nth-of-type(3), .module__container p:nth-of-type(3).p--sans-serif {
+    margin-top:-1rem
+}
+
+.module__container__link {
+    display:block
+}
+
+.module__container__link:focus {
+    outline: .125rem solid #4d90fe;
+    outline-offset:0
+}
+
+.module__title {
+    margin-bottom: 2.5rem;
+    text-align:center
+}
+
+.module__title--alt {
+    font-weight:500
+}
+
+.module__subtitle {
+    margin-top: -2rem;
+    margin-bottom: 2.5rem;
+    font-size: 1.25rem;
+    text-align:center
+}
+
+
+
+.card {
+    padding:1.25rem 1.25rem 2.5rem
+}
+
+.card, .card--alt {
+    background: #fff;
+    color: #58595b;
+    font-family:Whitney SSm A, Whitney SSm B, sans-serif
+}
+
+.card--alt {
+    padding:1.25rem 0
+}
+
+.card__header {
+    margin-bottom: 1.25rem;
+    padding-bottom: .25rem;
+    border-bottom:.25rem solid #58595b
+}
+
+.card__meta {
+    font-weight: 600;
+    font-size: .75rem;
+    text-transform:uppercase
+}
+
+.wrap {
+    max-width: 90rem;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 1rem;
+    padding-left:1rem
+}
+
+.wrap:after, .wrap:before {
+    display: table;
+    width: 0;
+    content: ""
+}
+
+.wrap:after {
+    clear:both
+}
+
+@media (min-width: 48em) {
+    .wrap {
+        padding-right: 2rem;
+        padding-left:2rem
+    }
+}
+
+@media (min-width: 64.0625em) {
+    .wrap {
+        padding-right: 3rem;
+        padding-left:3rem
+    }
+}
+
+.wrap--wide {
+    max-width:96rem
+}
+
+.wrap--narrow {
+    max-width:70rem
+}
+
+.wrap--slim {
+    max-width:58rem
+}
+
+.wrap--relative {
+    position:relative
+}
+
 
   </style>
 </html>
