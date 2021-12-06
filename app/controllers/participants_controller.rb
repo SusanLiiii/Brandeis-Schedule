@@ -23,7 +23,7 @@ class ParticipantsController < ApplicationController
     @participant = Participant.new(participant_params)
 
     respond_to do |format|
-      if !Participant.exists?(:email => @organizer.email)
+      if !Participant.exists?(:email => @participant.email)
         if @participant.save
           reset_session
           participant_log_in @participant
