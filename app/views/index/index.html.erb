@@ -120,15 +120,14 @@
               <h4 class="my-0 font-weight-normal">My Upcoming Event</h4>
             </div>
             <div class="card-body">
-              <% Calendar.new(EventSchedule.all).get_current_event.each do |event| %>
+              <% Calendar.new(EventSchedule.where(event_id: current_user.events.ids)).get_next_event.each do |event| %>
                 <% event = event.event%>
                 <h3 class="card-title pricing-card-title"><%= link_to event.name, event %></h3>
                 <ul class="list-unstyled mt-3 mb-4">
                   <li>Organizer: <%= event.organizer.name %></li>
                   <li>Location: <%= event.room.name.html_safe %></li>
                   <li>Capcity: 80/100</li>
-                  <li>Time: <%= event.time_blocks.first.start_time %> - <%= event.time_blocks.last.end_time %></li>
-                  <li>Learn More</li>
+                  <li>Time: <%= event.event_schedules.first.date %>, <%= event.time_blocks.first.start_time %> - <%= event.time_blocks.last.end_time %></li>
                 </ul>
               <%end %>
             </div>
@@ -163,7 +162,6 @@
                     <li>Location: <%= event.room.name.html_safe %></li>
                     <li>Capcity: 80/100</li>
                     <li>Time: <%= event.time_blocks.first.start_time %> - <%= event.time_blocks.last.end_time %></li>
-                    <li>Learn More</li>
                   </ul>
                   <% if current_user.events.where(id:event.id).empty? %>
                     <%= button_to "Add to My Schedule", add_participants_path, method: :post, params: { event_id: event.id }, class:"btn float-right login_btn"%>

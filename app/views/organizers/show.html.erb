@@ -1,5 +1,5 @@
 <html>
-  <head>My Schedule</head>
+  <head>Organizer Schedule</head>
   <body>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -12,7 +12,7 @@
   <div class="container mt-5">
   <div id="background" >
   <p id="notice"><%= notice %></p>
-  <h1>My Schedule</h1>
+  <h1><%= @organizer.name%> Schedule</h1>
   <section id="tabs" class="project-tab">
             <div class="container">
                 <div class="row">
@@ -49,12 +49,18 @@
                                           <td>
                                             <%= event.participants.size%>
                                           </td>
+                                          <% if logged_in? %>
+                                            <% if is_organizer? %>
+                                            <% if current_user.id == @organizer.id %>
                                           <td>
                                             <%= link_to 'Edit', edit_event_path(event)%>
                                           </td>
                                           <td>
-                                            <%= link_to "Cancel", cancel_events_path, method: :post, params: { event_id: event.id }%>
+                                            <%= button_to "Cancel", cancel_events_path, method: :post, params: { event_id: event.id }%>
                                           </td>
+                                          <% end %>
+                                          <% end %>
+                                          <% end %>
                                         </tr>
                                       <% end %>
                                     </tbody>
@@ -81,12 +87,18 @@
                                           <td>
                                             <%= event.participants.size%>
                                           </td>
+                                          <% if logged_in? %>
+                                            <% if is_organizer? %>
+                                            <% if current_user.id == @organizer.id %>
                                           <td>
                                             <%= link_to 'Edit', edit_event_path(event)%>
                                           </td>
                                           <td>
                                             <%= button_to "Cancel", cancel_events_path, method: :post, params: { event_id: event.id }%>
                                           </td>
+                                          <% end %>
+                                          <% end %>
+                                          <% end %>
                                         </tr>
                                       <% end %>
                                     </tbody>
