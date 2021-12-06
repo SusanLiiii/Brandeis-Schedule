@@ -1,9 +1,9 @@
 <html>
 <div class="container mt-4">
       <div class="row d-flex justify-content-center">
-  <%= form_tag(do_search_rooms_path, method: "get", class: "form") do %>
-  <div class="col-md-7">
-              <div class="card p-3 py-2">
+  <%= form_tag(do_search_available_rooms_path, method: "get", class: "form") do %>
+  <div class="row">
+    <div class="card p-3 py-2">
                   <%# <h5>Filters</h5> %>
                   <div class="row g-1 mt-1">
     <div class="row tbalign-items-centerp-2">
@@ -11,18 +11,17 @@
       <div class="row">
       <div class="col pt-2">
         Day
-        <%= date_select(:event_date, :date, :start_year => Date.current.year, :end_year => Date.current.year + 10) %>
+        <%= date_select(:event_date, :date, :start_year => Date.current.year, :end_year => Date.current.year + 10) %>      
+      </div>
+      <div class="col pt-2">
         Time
         <%= time_select(:time, :start_time, {minute_step: 30}, html_options: { class: 'form-control' })%>
         -
-        <%= time_select(:time, :start_time, {minute_step: 30}, html_options: { class: 'form-control' })%>         <%= submit_tag("Find Available Room", class: "btn float-right login_btn") %>
-
-      
+        <%= time_select(:time, :end_time, {minute_step: 30}, html_options: { class: 'form-control' })%>         </div>
+      <div class="col">
+        <%= submit_tag("Find Available Room", class: "btn float-right login_btn") %>  
       </div>
     </div>
-
-    <div class = "row">
-      </div>
     </div>
     </div>
     </div>

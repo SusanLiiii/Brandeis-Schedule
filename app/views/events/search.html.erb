@@ -3,16 +3,17 @@
   <div class="container mt-4">
       <div class="row d-flex justify-content-center">
       <%= form_tag(do_search_events_path, method: "get", class: "form") do %>
-          <div class="col-md-8">
+          <div class="row">
               <div class="card p-3 py-2">
                   <%# <h5>Filters</h5> %>
                   <div class="row g-1 mt-1">
                       <div class="col pt-2">
                         <%= select_tag(:room,
-                        options_for_select(get_room_list), class: "form-control-lg", :prompt => "Room") %>
+                        options_for_select(get_room_list), class: "form-control-lg") %>  
+                      </div>
+                      <div class="col pt-2">
                         <%= select_tag(:org,
-                        options_for_select(get_organizer_list), class: "form-control-lg", :prompt => "Organizer") %>
-                                            
+                        options_for_select(get_organizer_list), class: "form-control-lg") %>     
                       </div>
                       <div class="col pt-2">
                       <span class="datetime"> <%= date_select( :event_date, :date, :start_year => Date.current.year, :end_year => Date.current.year + 1)%></span>
@@ -30,6 +31,8 @@
                               </ul>
                           </div>
                       </div> %>
+                  </div>
+                  <div class="row g-1 mt-1">
                       <div class="d-flex justify-content-center px-2 col-md-7">
                         <%= text_field_tag(:name, "", class: "form-control-lg", placeholder: "Enter your interested event") %>
                         <%= button_tag( :class => "button_green") do %>
