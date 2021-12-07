@@ -26,7 +26,7 @@
           <!-- For each post in the array, give it a class of "col-4" which is 3 per row-->
           <!-- If posts.count = 4, last array will be [post4, nil, nil] so if it's nil, don't do anything or you'll get an error-->
           <%= link_to Calendar.new(EventSchedule.all).get_today.first do %>
-            <img class="d-block w-100" src="/assets/shapiro.jpg" alt="First slide">        
+            <img class="d-block w-100" src="https://www.brandeis.edu/student-activities/images/shapiro-campus-center.jpg" alt="First slide">        
           <% end %>
           <div class="carousel-caption d-none d-md-block">
             <h1 id="caption"><%= Calendar.new(EventSchedule.all).get_today.first.name%></h1>
@@ -38,7 +38,7 @@
 
         <div class="carousel-item">
           <%= link_to Calendar.new(EventSchedule.all).get_today.second do %>
-            <img class="d-block w-100" src="/assets/usdan.jpg" alt="Second slide">        
+            <img class="d-block w-100" src="https://www.brandeis.edu/student-activities/images/usdan.jpg" alt="Second slide">        
           <% end %>
           <div class="carousel-caption d-none d-md-block">
             <h1 id="caption"><%= Calendar.new(EventSchedule.all).get_today.second.name%></h1>
@@ -47,7 +47,7 @@
         </div>
         <div class="carousel-item">
           <%= link_to Calendar.new(EventSchedule.all).get_today.third do %>
-            <img class="d-block w-100" src="/assets/upusdan.jpg" alt="Third slide">        
+            <img class="d-block w-100" src="https://images.squarespace-cdn.com/content/v1/5878eed0414fb53c291528ff/1484757372352-MO18HNE017HVLZMSUXO3/Usdan+Websized-29.jpg?format=2500w" alt="Third slide">        
           <% end %>
           <div class="carousel-caption d-none d-md-block">
             <h1 id="caption"><%= Calendar.new(EventSchedule.all).get_today.third.name%></h1>
