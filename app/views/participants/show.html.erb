@@ -71,6 +71,9 @@
                                           <td>
                                             <%= event.organizer.name %>
                                           </td>
+                                          <td>
+                                            <%= button_to "Remove", remove_participants_path, method: :post, params: { event_id: event.id }%>
+                                          </td>
                                         </tr>
                                       <% end %>
                                     </tbody>
