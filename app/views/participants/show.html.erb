@@ -7,6 +7,7 @@
 
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <!------ Include the above in your HEAD tag ---------->
+  <div class="container mt-5">
   <div id="background">
   <p id="notice"><%= notice %></p>
   <section id="tabs" class="project-tab">
@@ -42,7 +43,7 @@
                                             <%= event.time_blocks.last.end_time %>
                                           </td>
                                           <td>
-                                            <%= button_to "Remove from My Schedule", remove_participants_path, method: :post, params: { event_id: event.id }%>
+                                            <%= button_to "Remove", remove_participants_path, method: :post, params: { event_id: event.id }%>
                                           </td>
                                         </tr>
                                       <% end %>
@@ -80,6 +81,8 @@
                 </div>
             </div>
           </section>
+          </div>
+          </div>
 <%= link_to 'Back', root_path %>
 
 </div>
