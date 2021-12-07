@@ -133,7 +133,7 @@
       <div class="module__container">
       <h2 class="module__title module__title--alt">Happening Event</h2>
         <div class="row">
-          <% Calendar.new(EventSchedule.all).get_next_event.each do |event| %>
+          <% Calendar.new(EventSchedule.all).get_next_event.first(4).each do |event| %>
           <% event = event.event%>
               <div class="col">
                 <div class="card" id="minicard">
@@ -165,7 +165,7 @@
               <h4 class="my-0 font-weight-normal">Current Event</h4>
             </div>
             <div class="card-body">
-              <% Calendar.new(EventSchedule.all).get_current_event.each do |event| %>
+              <% Calendar.new(EventSchedule.all).get_current_event.first(5).each do |event| %>
                 <% event = event.event%>
                 <h3 class="card-title pricing-card-title"><%= link_to event.name, event %></h3>
                 <ul class="list-unstyled mt-3 mb-4">
