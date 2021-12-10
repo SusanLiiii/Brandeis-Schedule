@@ -41,9 +41,13 @@ We deploy our app to Heroku and provid a sophisticated test on the custom Calend
 - We create the models based on different resources scheduling a room may have such as rooms, time blocks.
 - We also create models for two user types.
 - Our [model diagram](https://dbdiagram.io/d/6161f8cb940c4c4eec8d4c3f)
-### Account Set Up
 
-We build role-based access control and distinguish the users as organizers and participants so that the page is displayed differently when ![unlogged-in](https://user-images.githubusercontent.com/64478834/145521846-32c365b2-e3ea-4c32-a5e3-412756bc8127.png), ![logged-in as organizers](https://user-images.githubusercontent.com/64478834/145521955-d337d99f-55e6-4772-83bb-41bce825a270.png), and ![logged-in as participants](https://user-images.githubusercontent.com/64478834/145522019-1faeaaa9-1c4f-4ac1-9953-7d6f566edadf.png)
+### Account Set Up
+We build role-based access control and distinguish the users as organizers and participants so that the page is displayed differently when unlogged-in, logged-in as organizers, and logged-in as participants
+
+<img width="1419" alt="Unloggedin" src="https://user-images.githubusercontent.com/64478834/145521846-32c365b2-e3ea-4c32-a5e3-412756bc8127.png">
+<img width="1419" alt="Organizer Login" src="https://user-images.githubusercontent.com/64478834/145521955-d337d99f-55e6-4772-83bb-41bce825a270.png">
+<img width="1419" alt="Participant Login" src="https://user-images.githubusercontent.com/64478834/145522019-1faeaaa9-1c4f-4ac1-9953-7d6f566edadf.png">
 
 ### Functionalities for Participant users
 <img width="1419" alt="Event Page for Participant" src="https://user-images.githubusercontent.com/64478834/145522089-6ead54c6-23ca-40e9-b6ab-ad250076d29d.png">
