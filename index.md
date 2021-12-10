@@ -10,6 +10,7 @@ A one stop shop for Brandeis Student Activities scheduling. This product allows 
 ```
 gem 'icalendar', '2.7.1'
 ```
+
 ```
 event_data = Icalendar::Calendar.parse(URI.open("https://www.trumba.com/calendars/brandeis-university.ics"))
 ```
@@ -19,12 +20,12 @@ event_data = Icalendar::Calendar.parse(URI.open("https://www.trumba.com/calendar
   gem 'nokogiri', '~> 1.11', '>= 1.11.7'
   gem 'open-uri'
 ```
+
 ```
 browser = Watir::Browser.new
 browser.goto 'https://www.brandeis.edu/student-activities/clubs-organizations/club-support/event-support/capacities.html'
 room_page = Nokogiri::HTML(browser.html)
 browser.close
-
 room_card = room_page.xpath("//div[contains(@class, 'table__scroll')]")
 ```
 
@@ -75,16 +76,16 @@ Solution:
 
 ```
 custom_property_list = event.to_ical.split("\r\nX-TRUMBA-CUSTOMFIELD")[1..]
-  custom_property_list[-1] = custom_property_list[-1].split("\r\nX-TRUMBA-LINK")[0];
-  custom_property_list.each do |custom_property|
-    if custom_property.include? "NAME=Room"
-      room = custom_property.split("TYPE=SingleLine:")[-1].gsub(/\r\n /, "").gsub(/\\/, "")
-      ......
-    elsif custom_property.include? "NAME=Event sponsor(s)"
-      organizer = custom_property.split("TYPE=MultiLine:")[-1].gsub(/\r\n /, "").gsub(/\\/, "").gsub(/&#*\w+;/, "")
-      ......
-    end
+custom_property_list[-1] = custom_property_list[-1].split("\r\nX-TRUMBA-LINK")[0];
+custom_property_list.each do |custom_property|
+ if custom_property.include? "NAME=Room"
+    room = custom_property.split("TYPE=SingleLine:")[-1].gsub(/\r\n /, "").gsub(/\\/, "")
+    ......
+ elsif custom_property.include? "NAME=Event sponsor(s)"
+    organizer = custom_property.split("TYPE=MultiLine:")[-1].gsub(/\r\n /, "").gsub(/\\/, "").gsub(/&#*\w+;/, "")
+    ......
   end
+end
 ```
 
 ### Room Availability 
@@ -106,49 +107,39 @@ class Calendar
   def find_start_time(start_time)
     ......
   end
-
   def find_end_time(end_time)
     ......
   end
-
   def get_today
     ......
   end
-
   def get_future
     ......
   end
-
   def get_past
     ......
   end
-
   def get_by_date(date)
     ......
   end
-
   def get_by_event_name(name)
     ......
   end
-
   def check_room_availability(room_id, date, start_time, end_time)
     ......
   end
-
   def find_available_rooms(date, start_time, end_time)
     ......
   end
-
   def get_current_event
     ......
   end
-
   def get_next_event
     ......
   end
-
 end
 ```
+
 ## Contribution
 - UI design and implementation: Jane Wang
 - Back-end Implementation: Susan Li
