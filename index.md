@@ -1,12 +1,12 @@
 # Brandeis Schedule App Final Report
 
-A one stop shop for Brandeis Student Activities scheduling. This product allows student organizers to choose an available room and create a new event, and allow participants to view the event schedules and subscribe to events. We also allow mailling between organizers and participants, so that participants will receive notice from the organizers about their subscribed events.
+A one stop shop for Brandeis Student Activities scheduling. This product allows student organizers to choose an available room and create a new event, and allows participants to view the event schedules and subscribe to events. It also allows mailling between organizers and participants, so that participants can receives notice from the organizers about their subscribed events.
 
 ## Technology
 
 ### Data seeding
 
-- We imported data from the [calendar-subscription link](https://www.trumba.com/calendars/brandeis-university.ics) on [Brandeis Campus Calendar website](https://www.brandeis.edu/events/) and use an icalendar API through importing the [icalendar gem](https://github.com/icalendar/icalendar) to parse the data and text to get information about all Brandeis events and use that to generate our database. So all events shown on our app are live events at Brandeis
+- We import data from the [calendar-subscription link](https://www.trumba.com/calendars/brandeis-university.ics) on [Brandeis Campus Calendar website](https://www.brandeis.edu/events/) and use an icalendar API through importing the [icalendar gem](https://github.com/icalendar/icalendar) to parse the data and text to get information about all Brandeis events and use that to generate our database. So all events shown on our app are live events at Brandeis
 ```
 gem 'icalendar', '2.7.1'
 ```
@@ -14,7 +14,7 @@ gem 'icalendar', '2.7.1'
 ```
 event_data = Icalendar::Calendar.parse(URI.open("https://www.trumba.com/calendars/brandeis-university.ics"))
 ```
-- We also scraped data from [Brandeis Student Activities room list](https://www.brandeis.edu/student-activities/clubs-organizations/club-support/event-support/capacities.html), and parse the html template to get a list of room names, locations and capacity.
+- We also scrape data from [Brandeis Student Activities room list](https://www.brandeis.edu/student-activities/clubs-organizations/club-support/event-support/capacities.html), and parse the html template to get a list of room names, locations and capacity.
 ```
   gem 'webdrivers', '~> 4.6'
   gem 'nokogiri', '~> 1.11', '>= 1.11.7'
@@ -33,23 +33,23 @@ room_card = room_page.xpath("//div[contains(@class, 'table__scroll')]")
 
 ### Deployment and Tests
 
-We deployed our app to Heroku and provide a sophisticated test on the custom Calendar Poro which provides most of the crucial functionality of our app.
+We deploy our app to Heroku and provid a sophisticated test on the custom Calendar PORO which provides most of the crucial functionality of our app.
 
 ## What We Did
 
 ### Data Scheme
-- We created the model based on different resources scheduling a room may have such as rooms, time blocks.
-- We also create model for two user types.
+- We create the models based on different resources scheduling a room may have such as rooms, time blocks.
+- We also create models for two user types.
 - Our [model diagram](https://dbdiagram.io/d/6161f8cb940c4c4eec8d4c3f)
 ### Account Set Up
 
-We built role-based access control and distinguished the users as organizers and participants so that the page will be displayed different when ![unlogged-in](https://user-images.githubusercontent.com/64478834/145521846-32c365b2-e3ea-4c32-a5e3-412756bc8127.png), ![logged-in as organizers](https://user-images.githubusercontent.com/64478834/145521955-d337d99f-55e6-4772-83bb-41bce825a270.png), and ![logged-in as participants](https://user-images.githubusercontent.com/64478834/145522019-1faeaaa9-1c4f-4ac1-9953-7d6f566edadf.png)
+We build role-based access control and distinguish the users as organizers and participants so that the page is displayed differently when ![unlogged-in](https://user-images.githubusercontent.com/64478834/145521846-32c365b2-e3ea-4c32-a5e3-412756bc8127.png), ![logged-in as organizers](https://user-images.githubusercontent.com/64478834/145521955-d337d99f-55e6-4772-83bb-41bce825a270.png), and ![logged-in as participants](https://user-images.githubusercontent.com/64478834/145522019-1faeaaa9-1c4f-4ac1-9953-7d6f566edadf.png)
 
 ### Functionalities for Participant users
 <img width="1419" alt="Event Page for Participant" src="https://user-images.githubusercontent.com/64478834/145522089-6ead54c6-23ca-40e9-b6ab-ad250076d29d.png">
 
-- We optimized the process of viewing campus-wide events by aggregateing all the happening events at Brandeis to one page, and sort by organizers, rooms, and date.
-- We allow searching of a particular event or a type of event by providing filters from the search page.
+- We optimize the process of viewing campus-wide events by aggregateing all the happening events at Brandeis to one page, and sorted them by organizers, rooms, and date.
+- We implement searching of a particular event or a type of event by providing filters from the search page.
 - We allow participants to subscribe to events they are participanting and receive information about their subscribed events from corresponding organizers about event modification or cancellation.
 - We provide participants an auto-generated event schedule based on their subscribed events.
 
@@ -58,10 +58,10 @@ We built role-based access control and distinguished the users as organizers and
 ### Functionalities for Organizer users
 <img width="1419" alt="Room Search" src="https://user-images.githubusercontent.com/64478834/145522171-986e6686-85b4-4138-9c38-8eb6f84d0640.png">
 
-- We replaced the onerous procedure for scheduling a new event involving extensive human coordination across multiple departments to reserve rooms, find available time slots, and invite participants to a simple click.
-- We keep track of all room at Brandeis on any events that's happening inside through designing and implementing an algorithm that checks the available time for a room on a given date, and whether a room is available under a give date and time
+- We replace the onerous procedure for scheduling a new event involving extensive human coordination across multiple departments to reserve rooms, find available time slots, and invite participants to a simple click.
+- We keep track of all room at Brandeis on any event that's happening inside through designing and implementing an algorithm that checks the available time for a room on a given date, and whether a room is available under a give date and time
 - We allow organizers to search for desired rooms and create a new events to our database, which they are later able to edit or cancel. 
-- We also allow organizers to see number of participants for their events, and they are able to send message to participants of an event on new updates to the event.
+- We also allow organizers to see numbers of participants for their events, and they are able to send message to participants of an event on new updates to the event.
 
 <img width="1416" alt="Event Information" src="https://user-images.githubusercontent.com/64478834/145522288-ac0ef8e2-8bab-480a-b07c-ba0842b7b2d0.png">
 
