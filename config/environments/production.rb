@@ -63,6 +63,9 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "Brandeis_Schedule_production"
 
   config.action_mailer.delivery_method = :smtp
+  host = 'cryptic-tor-08741.herokuapp.com' 
+  config.action_mailer.default_url_options = { host: host }
+
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
