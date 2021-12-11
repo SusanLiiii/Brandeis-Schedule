@@ -27,33 +27,30 @@
           <!-- If posts.count = 4, last array will be [post4, nil, nil] so if it's nil, don't do anything or you'll get an error-->
           <%= link_to Calendar.new(EventSchedule.all).get_today.first do %>
             <img class="d-block w-100" src="https://www.brandeis.edu/student-activities/images/shapiro-campus-center.jpg" alt="First slide">        
+            <div class="carousel-caption d-none d-md-block">
+              <h1 id="caption"><%= Calendar.new(EventSchedule.all).get_today.first.name%></h1>
+              <p id="caption"><%= truncate Calendar.new(EventSchedule.all).get_today.first.description.html_safe, length: 100%></p>
+            </div>
           <% end %>
-          <div class="carousel-caption d-none d-md-block">
-            <h1 id="caption"><%= Calendar.new(EventSchedule.all).get_today.first.name%></h1>
-            <p id="caption"><%= truncate Calendar.new(EventSchedule.all).get_today.first.description.html_safe, length: 100%></p>
-          </div>
-          
-
-
         </div>
 
         <div class="carousel-item">
           <%= link_to Calendar.new(EventSchedule.all).get_today.second do %>
             <img class="d-block w-100" src="https://www.brandeis.edu/student-activities/images/usdan.jpg" alt="Second slide">        
+            <div class="carousel-caption d-none d-md-block">
+              <h1 id="caption"><%= Calendar.new(EventSchedule.all).get_today.second.name%></h1>
+              <p id="caption"><%= truncate Calendar.new(EventSchedule.all).get_today.second.description.html_safe, length: 100%></p>
+            </div>
           <% end %>
-          <div class="carousel-caption d-none d-md-block">
-            <h1 id="caption"><%= Calendar.new(EventSchedule.all).get_today.second.name%></h1>
-            <p id="caption"><%= truncate Calendar.new(EventSchedule.all).get_today.second.description.html_safe, length: 100%></p>
-          </div>
         </div>
         <div class="carousel-item">
           <%= link_to Calendar.new(EventSchedule.all).get_today.third do %>
             <img class="d-block w-100" src="https://images.squarespace-cdn.com/content/v1/5878eed0414fb53c291528ff/1484757372352-MO18HNE017HVLZMSUXO3/Usdan+Websized-29.jpg?format=2500w" alt="Third slide">        
+            <div class="carousel-caption d-none d-md-block">
+              <h1 id="caption"><%= Calendar.new(EventSchedule.all).get_today.third.name%></h1>
+              <p id="caption"><%= truncate Calendar.new(EventSchedule.all).get_today.third.description.html_safe, length: 100%></p>
+            </div>
           <% end %>
-          <div class="carousel-caption d-none d-md-block">
-            <h1 id="caption"><%= Calendar.new(EventSchedule.all).get_today.third.name%></h1>
-            <p id="caption"><%= truncate Calendar.new(EventSchedule.all).get_today.third.description.html_safe, length: 100%></p>
-          </div>
         </div>
       </div>
       <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
