@@ -40,6 +40,7 @@ class ParticipantsController < ApplicationController
   def add_to_schedule
     @participant = Participant.find(session[:participant_id])
     if !@participant.events.include?(Event.find(params[:event_id]))
+      EventNotificationMailer.with(user: @participant, event: Event.find(params[:event_id])).event_subscribe_email.deliver_later
       ParticipantSchedule.create(participant_id: @participant.id, event_id: params[:event_id])
       flash[:success] = "You have successfully enrolled in this course."
       redirect_to @participant

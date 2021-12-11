@@ -87,6 +87,7 @@ class EventsController < ApplicationController
             @success = @success && event_schedule.save
           end
           if @success
+            EventNotificationMailer.with(event: @event).event_edit_email.deliver_later
             redirect_to @event
           else
             (start_time_id..end_time_id).each do |time|
@@ -109,6 +110,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:event_id])
     @event.update(isCanceled: true)
     EventSchedule.where(event_id: @event.id).destroy_all
+    EventNotificationMailer.with(event: @event).event_cancel_email.deliver_later
     redirect_to @event
   end
 

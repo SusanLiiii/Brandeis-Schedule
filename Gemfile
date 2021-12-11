@@ -23,6 +23,7 @@ gem 'open-uri'
 group :development, :test do
   gem 'byebug',  '11.1.3', platforms: %i[mri mingw x64_mingw]
   gem 'sqlite3', '1.4.2'
+  gem 'figaro'
 end
 
 group :development do
