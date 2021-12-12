@@ -1,4 +1,5 @@
 require 'icalendar'
+require 'faker'
 
 class Calendar
 
@@ -150,7 +151,7 @@ class Calendar
             if !Organizer.where("organizers.name LIKE ?", "%#{organizer}%").size().zero?
               organizer = Organizer.where("organizers.name LIKE ?", "%#{organizer}%")[0]
             else
-              organizer = Organizer.create(name: organizer, email: "contact@brandeis.edu", password: "0000000")
+              organizer = Organizer.create(name: organizer, email: Faker::Internet.email(name: organizer), password: "0000000")
             end
             event_info["organizer_id"] = organizer.id 
           end
