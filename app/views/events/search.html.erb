@@ -50,6 +50,7 @@
               <%= button_to "New Event", search_available_rooms_path, method: :get %>
             <% end %>
           <% end %>
+          <%= button_to "Update", update_calendar_events_path, method: :post, class:"btn float-right login_btn"%>
           <%= render "index" %>
       </div>
   </div>

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       get 'search'
       get 'do_search'
       post 'cancel', to: 'events#cancel'
+      post 'update_calendar', to: 'events#update_calendar'
     end
   end
   resources :participants do
