@@ -36,3 +36,4 @@ Room.import rooms
 Room.create(location:"Null", name:"Null", capacity:0)
 
 Organizer.create(name: "None", email: "calendar@brandeis.edu", password: '0000000')
+Calendar.new(EventSchedule.all).update_calendar
