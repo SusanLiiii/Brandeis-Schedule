@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get ':not_found' => 'index#index', :constraints => { :not_found => /.*/ }
   resources :events do
     collection do
       get 'search'
