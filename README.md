@@ -12,6 +12,10 @@ To import the code, run
   git clone https://github.com/SusanLiiii/Brandeis-Schedule.git
 ```
 
+## Link to Final Report Page
+
+The github page for the final report is https://susanliiii.github.io/Brandeis-Schedule/
+
 ## Visit the web
 
 The heroku link for the web is https://cryptic-tor-08741.herokuapp.com/
