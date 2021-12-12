@@ -2,6 +2,7 @@ class EventNotificationMailer < ApplicationMailer
   def event_subscribe_email
     @event = params[:event]
     @user = params[:user]
+    mail.attachments['appointment_invitation.ics'] = { :mime_type => 'text/calendar', content: Calendar.new(EventSchedule.all).generate_calendar(@event) }
     mail(to: @user.email, subject: "Successful subscription on event: #{@event.name}")
   end
 

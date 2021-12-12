@@ -1,3 +1,5 @@
+require 'icalendar'
+
 class Calendar
 
   # Search for events within given range
@@ -104,4 +106,18 @@ class Calendar
     return event.where(time_block_id: event.first.time_block_id)
   end
 
+  def generate_calendar(event)
+    start_time = event.event_schedules.first.time_block.start_time.split(":")
+    end_time = event.event_schedules.last.time_block.end_time
+    date = event.event_schedules.first.date
+
+    cal = Icalendar::Calendar.new
+    cal.event do |e|
+      e.dtstart = Icalendar::Values::DateTime.new(DateTime.new date.year, date.month, date.day, start_time[0].to_i, start_time[1].to_i, 0)
+      e.dtend = Icalendar::Values::DateTime.new(DateTime.new date.year, date.month, date.day, end_time[0].to_i, end_time[1].to_i, 0)
+      e.summary = event.description
+      e.location = "#{event.room.location}: #{event.room.name}"
+    end
+    return cal.to_ical
+  end
 end
