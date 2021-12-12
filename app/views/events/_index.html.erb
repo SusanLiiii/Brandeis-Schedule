@@ -18,7 +18,7 @@
                             <h6 class="mb-0">Mailchimp</h6> <span>1 days ago</span>
                         </div> %>
                         <div class="ms-2 c-details">
-                            <h6 class="mb-0"><%= link_to event.organizer.name, event.organizer, class:"link" %></h6> <span>1 days ago</span>
+                            <h6 class="mb-0"><%= link_to event.organizer.name, event.organizer, class:"link" %></h6> <span><%= event.event_schedules.first.date%></span>
                         </div>
                     </div>
                     <%# <div class="badge"> <span>Design</span> </div> %>
@@ -78,7 +78,7 @@
                             <h6 class="mb-0">Mailchimp</h6> <span>1 days ago</span>
                         </div> %>
                         <div class="ms-2 c-details">
-                            <h6 class="mb-0"><%= link_to event.organizer.name, event.organizer, class:"link" %></h6> <span>1 days ago</span>
+                            <h6 class="mb-0"><%= link_to event.organizer.name, event.organizer, class:"link" %></h6> <span><%= event.event_schedules.first.date%></span>
                         </div>
                     </div>
                     <%# <div class="badge"> <span>Design</span> </div> %>
