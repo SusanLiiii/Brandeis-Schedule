@@ -6,7 +6,7 @@ A one stop shop for Brandeis Student Activities scheduling. This product allows 
 
 ### Data seeding
 
-- We import data from the [calendar-subscription link](https://www.trumba.com/calendars/brandeis-university.ics) on [Brandeis Campus Calendar website](https://www.brandeis.edu/events/) and use an icalendar API through importing the [icalendar gem](https://github.com/icalendar/icalendar) to parse the data and text to get information about all Brandeis events and use that to generate our database. So all events shown on our app are live events at Brandeis
+- We import data from the [calendar-subscription link](https://www.trumba.com/calendars/brandeis-university.ics) on [Brandeis Campus Calendar website](https://www.brandeis.edu/events/) and use an icalendar API through importing the [icalendar gem](https://github.com/icalendar/icalendar) to parse the data and text to get information about all Brandeis events and use that to generate our database. We also allow live update on the website to read from most updated Brandeis Calendar and update our database.
 ```
 gem 'icalendar', '2.7.1'
 ```
@@ -30,10 +30,30 @@ room_card = room_page.xpath("//div[contains(@class, 'table__scroll')]")
 ```
 
 ### Action Mailer
+We implement Action mailer to send email notification to participants and organizers about events. When participant add a new event to their schedule, an email with calendar invitation will be sent to them about the subscription. If some event has been modified or canceled by the organizer, all event subscribers will also receive email updates about it.
+
+<img width="1064" alt="successful subscription" src="https://user-images.githubusercontent.com/64478834/145720292-c8fbe37b-4809-44ab-9746-6a0743649252.png">
+<img width="1064" alt="cancel event" src="https://user-images.githubusercontent.com/64478834/145720398-765a6db2-92de-4ae7-9057-b04cd9b7862c.png">
+<img width="1064" alt="event change" src="https://user-images.githubusercontent.com/64478834/145720453-894fb812-a53f-49fb-8c27-0c34e60bf12b.png">
 
 ### Deployment and Tests
 
-We deploy our app to Heroku and provid a sophisticated test on the custom Calendar PORO which provides most of the crucial functionality of our app.
+We deploy our app to Heroku on https://cryptic-tor-08741.herokuapp.com/ and provid a sophisticated test on the custom Calendar PORO which provides most of the crucial functionality of our app.
+```
+class EventNotificationMailer < ApplicationMailer
+  def event_subscribe_email
+    ......
+  end
+
+  def event_edit_email
+    ......
+  end
+
+  def event_cancel_email
+    ......
+  end
+end
+```
 
 ## What We Did
 
@@ -54,7 +74,7 @@ We build role-based access control and distinguish the users as organizers and p
 
 - We optimize the process of viewing campus-wide events by aggregateing all the happening events at Brandeis to one page, and sorted them by organizers, rooms, and date.
 - We implement searching of a particular event or a type of event by providing filters from the search page.
-- We allow participants to subscribe to events they are participanting and receive information about their subscribed events from corresponding organizers about event modification or cancellation.
+- We allow participants to subscribe to events they are participanting and receive emails about their subscribed events.
 - We provide participants an auto-generated event schedule based on their subscribed events.
 
 <img width="1419" alt="Participant Schedule" src="https://user-images.githubusercontent.com/64478834/145522125-7e000837-2c11-47c3-8cae-06e4847c651b.png">
@@ -65,7 +85,7 @@ We build role-based access control and distinguish the users as organizers and p
 - We replace the onerous procedure for scheduling a new event involving extensive human coordination across multiple departments to reserve rooms, find available time slots, and invite participants to a simple click.
 - We keep track of all room at Brandeis on any event that's happening inside through designing and implementing an algorithm that checks the available time for a room on a given date, and whether a room is available under a give date and time
 - We allow organizers to search for desired rooms and create a new events to our database, which they are later able to edit or cancel. 
-- We also allow organizers to see numbers of participants for their events, and they are able to send message to participants of an event on new updates to the event.
+- We also allow organizers to see numbers of participants for their events.
 
 <img width="1416" alt="Event Information" src="https://user-images.githubusercontent.com/64478834/145522288-ac0ef8e2-8bab-480a-b07c-ba0842b7b2d0.png">
 
@@ -91,6 +111,12 @@ custom_property_list.each do |custom_property|
   end
 end
 ```
+
+### Calendar Update
+Problem:
+- We want to provide the functionality to update the calendar in the database from user end. However, if we read from Brandeis Calendar which we used to seed our database in the first place, there are a lot of events that are duplicate, and if an event is modified or canceled, we will not be able to find that out and change on the database
+Solution:
+- We find out that in the calendar object constructed by the icalendar gem, every event has a unique identifiers. We add a new attribute to our event model in the database corresponds to the uid, such that in an update, we will use the uid to identify an event and check for updates.
 
 ### Room Availability 
 <img width="697" alt="Screen Shot 2021-12-10 at 12 54 00 AM" src="https://user-images.githubusercontent.com/64478834/145524402-82972fca-c63b-41af-99c1-3f8352a4086e.png">
