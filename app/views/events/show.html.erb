@@ -1,36 +1,92 @@
 <html>
   <div class="card">
   <p id="notice"><%= notice %></p>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
-  <p>
-    <strong>Name:</strong>
-    <%= @event.name %>
+ <link href="http://cdn.shopify.com/s/files/1/0067/5617/1846/t/2/assets/timber.scss.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.css" rel="stylesheet" type="text/css"/>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+<div class="wrapper">
+        
+        <main>
+            <div id="shopify-section-product-template" class="shopify-section">
+                <div class="single-product-area mt-70 mb-80">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="product-details-large" id="ProductPhoto">
+                                    <img id="ProductPhotoImg" class="product-zoom" data-image-id="" alt="12. Aliexpress dropshipping by oberlo" data-zoom-image="https://i.pinimg.com/564x/a6/7b/8f/a67b8f899c39e978548aee332307b489.jpg" src="https://i.pinimg.com/564x/a6/7b/8f/a67b8f899c39e978548aee332307b489.jpg">
+          
+                                </div>
+                                <div id="ProductThumbs" class="product-thumbnail owl-carousel">
+                                    <a class="product-single__thumbnail active" href="https://i.pinimg.com/564x/18/27/9e/18279e6d17e56e6a4b9bc310ff2832bb.jpg" data-image="https://i.pinimg.com/564x/18/27/9e/18279e6d17e56e6a4b9bc310ff2832bb.jpg" data-image-id="6995357106246">
+                                    <img src="https://i.pinimg.com/564x/18/27/9e/18279e6d17e56e6a4b9bc310ff2832bb.jpg"  alt="12. Aliexpress dropshipping by oberlo"></a>
+          
+                                    <a class="product-single__thumbnail " href="https://i.pinimg.com/564x/a1/a4/5e/a1a45ef7cba82032806930ef52163bc8.jpg" 
+                                    data-image="https://i.pinimg.com/564x/a1/a4/5e/a1a45ef7cba82032806930ef52163bc8.jpg" data-zoom-image="https://i.pinimg.com/564x/a1/a4/5e/a1a45ef7cba82032806930ef52163bc8.jpg" data-image-id="6995358023750">
+                                    <img src="https://i.pinimg.com/564x/a1/a4/5e/a1a45ef7cba82032806930ef52163bc8.jpg" alt="12. Aliexpress dropshipping by oberlo"></a>
+          
+                                    <a class="product-single__thumbnail " href="https://i.pinimg.com/564x/a9/78/33/a978333105851b4023dd7c0f05a310e7.jpg" 
+                                    data-image="https://i.pinimg.com/564x/a9/78/33/a978333105851b4023dd7c0f05a310e7.jpg" data-zoom-image="https://i.pinimg.com/564x/a9/78/33/a978333105851b4023dd7c0f05a310e7.jpg" data-image-id="6995357302854">
+                                    <img src="https://i.pinimg.com/564x/a9/78/33/a978333105851b4023dd7c0f05a310e7.jpg" alt="12. Aliexpress dropshipping by oberlo"></a>
+          
+                                    <a class="product-single__thumbnail " href="https://i.pinimg.com/564x/2a/2c/16/2a2c16dba05a822cf12c0d245f9976db.jpg" 
+                                    data-image="https://i.pinimg.com/564x/2a/2c/16/2a2c16dba05a822cf12c0d245f9976db.jpg" data-zoom-image="https://i.pinimg.com/564x/2a/2c/16/2a2c16dba05a822cf12c0d245f9976db.jpg" data-image-id="6995357532230">
+                                    <img src="https://i.pinimg.com/564x/2a/2c/16/2a2c16dba05a822cf12c0d245f9976db.jpg" alt="12. Aliexpress dropshipping by oberlo"></a>
+          
+                                    <a class="product-single__thumbnail " href="https://i.pinimg.com/564x/71/6c/5a/716c5af8d31be61aa9bd5d53cb3a894c.jpg" 
+                                    data-image="https://i.pinimg.com/564x/71/6c/5a/716c5af8d31be61aa9bd5d53cb3a894c.jpg" data-zoom-image="https://i.pinimg.com/564x/71/6c/5a/716c5af8d31be61aa9bd5d53cb3a894c.jpg" data-image-id="6995357728838">
+                                    <img src="https://i.pinimg.com/564x/71/6c/5a/716c5af8d31be61aa9bd5d53cb3a894c.jpg" alt="12. Aliexpress dropshipping by oberlo"></a>
+          
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="single-product-content">
+                                <p>
+    
+    <h1 class="single-product-name"><%= @event.name %></h1>
   </p>
 
-  <p>
-    <strong>Description:</strong>
-    <%= @event.description.html_safe %>
-  </p>
+  
 
   <p>
-    <strong>Organizer:</strong>
-    <%= link_to @event.organizer.name, @event.organizer %>
+    <div class="product-sku"><%= link_to @event.organizer.name, @event.organizer %></div>
   </p>
 
   <p>
     <strong>Location:</strong>
     <%= link_to @event.room.name, @event.room %>
   </p>
-  <% if @event.isCanceled%>
-    <h3>
-      This event has been canceled.
-    </h3>
-  <% else %>
+
   <p>
-    <strong>Time:</strong>
-    <%= @event.event_schedules.first.date %>
-    <%= @event.time_blocks.first.start_time %> - <%= @event.time_blocks.last.end_time %>
+    <div class="single-product-price">
+      <div class="product-discount"><span  class="price" id="ProductPrice"><span class=money><%= @event.time_blocks.first.start_time %>-<%= @event.time_blocks.last.end_time %>
+      <%= @event.event_schedules.first.date %>
+      </span></span></div>
+    </div>
   </p>
+
+  <p>
+    <div class="product-info"><%= @event.description.html_safe %></div>
+  </p>
+
+  
+  
+  
+  <div class="single-product-action">
+                                                <div class="product-variant-option"> 
+                                                    <% if not @event.isCanceled%>
   <% if logged_in?%>
     <% if is_organizer? %>
       <% if !current_user.events.where(id:@event.id).empty? %>
@@ -48,8 +104,6 @@
     <% end %>
   <% end %>
   <% end %>
-  </div>
-
   <%= link_to 'All Events', search_events_path %>|
   <%= link_to 'Room', @event.room %>
 
@@ -57,6 +111,85 @@
     <strong>Participants:</strong>
     <%= @event.participants.size %>
   </p>
+                                                </div>
+                                                <style>.product-variant-option .selector-wrapper{display: none;}</style>
+                                                
+                                            </div>                     
+  </div>
+
+  
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <style type="text/css">.product-details .countdown-timer-wrapper{display: none !important;}</style>
+                                                
+                <script>$(document).ready(function() {$('.fancybox').fancybox();});</script>
+                <script>function productZoom(){
+                        $(".product-zoom").elevateZoom({
+                          gallery: 'ProductThumbs',
+                          galleryActiveClass: "active",
+                          zoomType: "inner",
+                          cursor: "crosshair"
+                        });$(".product-zoom").on("click", function(e) {
+                          var ez = $('.product-zoom').data('elevateZoom');
+                          $.fancybox(ez.getGalleryList());
+                          return false;
+                        });
+                        
+                        };
+                      function productZoomDisable(){
+                        if( $(window).width() < 767 ) {
+                          $('.zoomContainer').remove();
+                          $(".product-zoom").removeData('elevateZoom');
+                          $(".product-zoom").removeData('zoomImage');
+                        } else {
+                          productZoom();
+                        }
+                      };
+
+                      productZoomDisable();
+
+                      $(window).resize(function() {
+                        productZoomDisable();
+                      });
+                </script>
+                <script>
+                    $('.product-thumbnail').owlCarousel({
+                        loop: true,
+                        center: true,
+                        nav: true,dots:false,
+                        margin:10,
+                        autoplay: false,
+                        autoplayTimeout: 5000,
+                        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+                        item: 3,
+                        responsive: {
+                            0: {
+                                items: 2
+                            },
+                            480: {
+                                items: 3
+                            },
+                            992: {
+                                items: 3,
+                            },
+                            1170: {
+                                items: 3,
+                            },
+                            1200: {
+                                items: 3
+                            }
+                        }
+                    });
+                </script>
+            </div>
+        </main>
+    </div>
+    
+  
 <style>
       body {
           background-color: #eee
@@ -86,7 +219,94 @@
         padding: 10px;
       }
 
-      
+ 
+
+.product-add-to-cart .cart-title,
+.product-add-to-cart .cart-title:hover,
+.product-list-action .cart-title,
+.product-list-action .cart-title:hover {
+  background-color: transparent;
+  border-bottom: none;
+  color: inherit;
+}
+.product-add-to-cart .pro-add-btn i,
+.product-list-action .pro-add-btn i {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.action-wishlist:hover,
+.action-wishlist:focus{
+  color:#fff;
+}
+.add-to-cart.action-wishlist i {
+  margin-right: 0px;
+}
+.product-add-to-cart {
+  float: none;
+}
+.single-product-wishlist{
+  display: inline-block;
+  position: relative;
+  margin-left: 20px;
+}
+.product-thumbnail .owl-nav  {display: none;}
+
+.mt-80 { margin-top: 80px }.mb-80 { margin-bottom: 80px }
+.single-product-name {
+    font-size: 22px;
+    text-transform: capitalize;
+    font-weight: 900;
+    color: #444;
+    line-height: 24px;
+    margin-bottom: 15px;
+}
+.single-product-reviews {
+    margin-bottom: 10px;
+}
+.single-product-price {
+    margin-top: 25px;
+}
+.single-product-action {
+    margin-top: 30px;
+    padding-bottom: 30px;
+    border-top: 1px solid #ebebeb;
+    border-bottom: 1px solid #ebebeb;
+    float: left;
+    width: 100%;
+}
+.product-discount {
+    display: inline-block;
+    margin-bottom: 20px;
+}
+.product-discount span.price {
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 30px;
+    display: inline-block;
+    color: #008bff;
+}
+.product-info {
+    color: #333;
+    font-size: 14px;
+    font-weight: 400;
+}
+.product-info p {
+    line-height: 30px;
+    font-size: 14px;
+    color: #333;
+    margin-top: 30px;
+}
+
+.img {
+	object-fit: cover;         
+  	object-position: 100% 0;  //move image position in x direction. 
+  	object-position: 0 100%; //move image position in y direction.
+    width: 300px;
+  height: 337px;
+}
+
+
       
     </style>
   </html>
