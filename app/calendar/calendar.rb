@@ -118,6 +118,8 @@ class Calendar
       e.dtend = Icalendar::Values::DateTime.new(DateTime.new date.year, date.month, date.day, end_time[0].to_i, end_time[1].to_i, 0)
       e.summary = event.description
       e.location = "#{event.room.location}: #{event.room.name}"
+      e.organizer = event.organizer
+      e.uid = event.uid
     end
     return cal.to_ical
   end
