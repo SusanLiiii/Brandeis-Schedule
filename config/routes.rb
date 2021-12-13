@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       get 'search'
       get 'do_search'
       post 'cancel', to: 'events#cancel'
+      post 'update_calendar', to: 'events#update_calendar'
     end
   end
   resources :participants do
@@ -34,4 +35,5 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'index#index'
   get '/logout', to: 'application#destroy_session'
+  get ':not_found' => redirect('/'), :constraints => { :not_found => /.*/ }
 end
