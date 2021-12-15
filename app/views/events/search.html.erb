@@ -47,7 +47,7 @@
           <% end %>
           <% if logged_in? %>
             <% if is_organizer? %>
-              <%= button_to "New Event", search_available_rooms_path, method: :get %>
+              <%= button_to "New Event", search_available_rooms_path, method: :get, class:"btn float-right login_btn"%>
             <% end %>
           <% end %>
           <%= button_to "Update", update_calendar_events_path, method: :post, class:"btn float-right login_btn"%>
