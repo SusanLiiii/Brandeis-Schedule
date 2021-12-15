@@ -69,12 +69,19 @@
     <%= link_to @event.room.name, @event.room %>
   </p>
 
+<% if @event.isCanceled%>
   <p>
-    <div class="single-product-price">
-      <div class="product-discount"><span  class="price" id="ProductPrice"><span class=money><%= @event.time_blocks.first.start_time %>-<%= @event.time_blocks.last.end_time %>
-      <%= @event.event_schedules.first.date %>
-      </span></span></div>
-    </div>
+      <h3>
+        This event has been canceled.
+      </h3>
+  </p>
+<% else %>
+  <p>
+      <div class="single-product-price">
+        <div class="product-discount"><span  class="price" id="ProductPrice"><span class=money><%= @event.time_blocks.first.start_time %>-<%= @event.time_blocks.last.end_time %>
+        <%= @event.event_schedules.first.date %>
+        </span></span></div>
+      </div>
   </p>
 
   <p>
@@ -85,13 +92,19 @@
   
   
   <div class="single-product-action">
-                                                <div class="product-variant-option"> 
-                                                    <% if not @event.isCanceled%>
+    <div class="product-variant-option"> 
+      <p>
+    <strong>Participants:</strong>
+    <%= @event.participants.size %>
+  </p>
   <% if logged_in?%>
     <% if is_organizer? %>
       <% if !current_user.events.where(id:@event.id).empty? %>
-        <div> My Event</div>
-        <%= link_to 'Edit', edit_event_path(@event) %>
+        <div class="float-left"> My Event</div>
+        <br>
+        <%= button_to 'Edit', edit_event_path(@event), method: :get, class:"btn float-right login_btn" %>
+        <br>
+        <br>
         <%= button_to "Cancel", cancel_events_path, method: :post, params: { event_id: @event.id }, class:"btn float-right login_btn"%>
       <% end %>
     <% else %>
@@ -103,14 +116,10 @@
       <% end %>
     <% end %>
   <% end %>
-  <% end %>
+<% end %>
   <%= link_to 'All Events', search_events_path %>|
   <%= link_to 'Room', @event.room %>
 
-  <p>
-    <strong>Participants:</strong>
-    <%= @event.participants.size %>
-  </p>
                                                 </div>
                                                 <style>.product-variant-option .selector-wrapper{display: none;}</style>
                                                 

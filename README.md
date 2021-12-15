@@ -12,7 +12,11 @@ To import the code, run
   git clone https://github.com/SusanLiiii/Brandeis-Schedule.git
 ```
 
-## Link to Final Report Page
+## Documents
+
+All related documents can be found inside /docs folder.
+
+The Google slide for the final presentation can be found at https://docs.google.com/presentation/d/1u1DStvSvoRDm9ZwW7izeP2PTdt0Bvpv3JaRNdbf8VMQ/edit#slide=id.g1079e30e554_2_94
 
 The github page for the final report is https://susanliiii.github.io/Brandeis-Schedule/
 
