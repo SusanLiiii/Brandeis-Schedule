@@ -11,6 +11,24 @@
   <div id="background">
   <p id="notice"><%= notice %></p>
   <section id="tabs" class="project-tab">
+  <div class="breadcrumb-wrapper">
+            <div class="breadcrumb-area breadcrumbs overlay-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="breadcrumb-content text-center">
+                                <h1 class="breadmome-name breadcrumbs-title"><%= @participant.name %></h1>             
+                                <nav class="" role="navigation" aria-label="breadcrumbs">
+                                    <ul class="breadcrumb-list">
+                                        <li>Contact: <%= @participant.email %></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -157,6 +175,16 @@
       background: #eee
     }
 
-    
+    .breadcrumb-list > li {
+      font-size: 14px;
+      list-style: none;
+      display: inline;
+    }
+    .breadcrumb-list > li a:after {
+      content: "/";
+      vertical-align: middle;
+      margin: 0 5px;
+      color: #7a7a7a;
+    }
   </style>
 </html>
